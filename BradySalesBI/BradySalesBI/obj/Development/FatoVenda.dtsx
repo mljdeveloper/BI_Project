@@ -1,0 +1,2913 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/27/2020 4:26:22 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-99M8LEG"
+  DTS:CreatorName="DESKTOP-99M8LEG\aluga.com"
+  DTS:DTSID="{5310AD42-6C31-459A-A40D-76906AF59001}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FatoVenda"
+  DTS:PackageType="5"
+  DTS:VersionBuild="61"
+  DTS:VersionGUID="{C0858EC3-F65D-4BB2-B928-0B98C9F2BABD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ClienteNEncontrao]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{A597D626-3BE0-4E23-9BF9-190B6855DFE7}"
+      DTS:ObjectName="ClienteNEncontrao">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Cursos\EDX\ClienteNEncontrado.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILNRODOC"
+              DTS:DTSID="{E20139C4-6D86-4929-AFDC-F4BEA9CDD308}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="15"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILVALLIQ"
+              DTS:DTSID="{F8515505-C299-4E05-AB93-EE9C612043A8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="15"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILQTD"
+              DTS:DTSID="{3CF4C68B-5143-4FF5-B2D9-1023DE3F0161}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILDATDOC"
+              DTS:DTSID="{995F436A-428A-47CF-9C83-3A316B601C71}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILREPNOM"
+              DTS:DTSID="{BE055068-316B-40CA-B70C-1D3DCFCD8AC5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILSITNOM"
+              DTS:DTSID="{9BD0190C-FFC7-47D0-8E7E-2F31D22A0AE4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILCANNOM"
+              DTS:DTSID="{1B487D65-70C8-4088-A9BF-32FD0CBBB802}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILCLICOD"
+              DTS:DTSID="{FD05437C-A445-41A0-AD37-A3EC41DA598F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILITECOD"
+              DTS:DTSID="{82EE1681-0AEC-414D-A09E-006ABC744D36}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorCode"
+              DTS:DTSID="{48845089-83F0-48E5-8781-D0BE73BCBAC4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorColumn"
+              DTS:DTSID="{FB94B116-DFB7-4A0A-B3CC-EE2263ABEB23}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{8F136300-313B-41C8-AB75-772C36973A34}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\aluga.com\Desktop\ErroCliente.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ProdutoNaoEncontrado]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{8AB3FE1B-AA16-421C-B2DB-ACC5C6A05D02}"
+      DTS:ObjectName="ProdutoNaoEncontrado">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Cursos\EDX\ProdutoNaoEncontrado.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILNRODOC"
+              DTS:DTSID="{07C3C0CA-1432-4687-8570-A37FE046ED91}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="15"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILVALLIQ"
+              DTS:DTSID="{894188B1-9824-4CB4-BDC4-0D33638E6892}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="15"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILQTD"
+              DTS:DTSID="{4EA11FB6-E6B7-414E-B88A-2B4BDA9D18B3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILDATDOC"
+              DTS:DTSID="{45EF0437-8502-4904-81E6-EC80E1CDFBEA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILREPNOM"
+              DTS:DTSID="{CB17B32D-98C4-42BD-8279-E72360EB7D7A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILSITNOM"
+              DTS:DTSID="{A22CAC25-51B0-4258-9739-FE9ECD2D0F05}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILCANNOM"
+              DTS:DTSID="{A69BBAF9-D0D4-4602-9043-8433A218935F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILCLICOD"
+              DTS:DTSID="{B57C530B-9B71-45CD-856C-C64DF6A13C64}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILITECOD"
+              DTS:DTSID="{EA93AECC-92D0-4BEE-B551-F8CBD970596B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SKCLIENTE"
+              DTS:DTSID="{7EC297E6-1430-4D93-BBCB-2D1CECD723F7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorCode"
+              DTS:DTSID="{4F5B2BA5-60EB-4B65-B9A1-A52A547E9342}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorColumn"
+              DTS:DTSID="{EEB3A0CF-69E4-4EE7-9184-CC6D0BDDC3FA}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VendedorNEncontrado]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{8EDEB771-871E-4DC1-BBD3-D2658685FB09}"
+      DTS:ObjectName="VendedorNEncontrado">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Cursos\EDX\VendedorNEncontrado.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILNRODOC"
+              DTS:DTSID="{47379061-3019-4159-AA80-A10FAEBC66B3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="15"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILVALLIQ"
+              DTS:DTSID="{611A0608-780D-437D-83DF-13FF4B99F79F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="15"
+              DTS:DataScale="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILQTD"
+              DTS:DTSID="{112E803C-043F-4D30-BCE5-5D4F342E6442}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILDATDOC"
+              DTS:DTSID="{4729AFA7-0683-443E-B715-9A67C0217ED1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILREPNOM"
+              DTS:DTSID="{89481849-E89C-438B-861F-59CFA33EA1E4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILSITNOM"
+              DTS:DTSID="{93FFA8A5-8945-4066-B138-57A0727865A0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILCANNOM"
+              DTS:DTSID="{C1EA3E55-38D0-4E1F-9E80-036024EEF35E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILCLICOD"
+              DTS:DTSID="{B00974AD-466D-46C7-B63E-8A0892B89B29}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSOP_ORDBILITECOD"
+              DTS:DTSID="{3479ACC7-7482-4F39-ADA9-DAAE06BF5FF5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SKCLIENTE"
+              DTS:DTSID="{8CE686AE-5CC3-4B87-B552-05169EE8903E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SKPRODUTO"
+              DTS:DTSID="{ED45A27A-7283-4A3C-9BA9-3249DBD4A053}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorCode"
+              DTS:DTSID="{6850A550-F146-451C-A313-E76AE077CB3B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorColumn"
+              DTS:DTSID="{6D7DC698-F150-44B1-BA8A-277A1917D4AF}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{593EE5BE-F2A8-4721-942D-C72D04F0732A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentTime">
+      <DTS:VariableValue
+        DTS:DataType="7">4/27/2020 5:09:15 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2B22C3E3-987C-40AB-B888-6ADEDF733CE0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LastLoadTime">
+      <DTS:VariableValue
+        DTS:DataType="7">4/27/2020 5:09:32 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFM Fato"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A4AF74C2-0372-4C32-87F4-84ED3DD94FD7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFM Fato"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFM Fato\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\Data Conversion.Inputs[Data Conversion Input].Columns[TSOP_ORDBILDATDOC]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TSOP_ORDBILDATDOC"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILDATDOC]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFM Fato\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Output].Columns[DC_TSOP_ORDBILDATDOC]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Output].Columns[DC_TSOP_ORDBILDATDOC]"
+                      name="DC_TSOP_ORDBILDATDOC"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILDATDOC]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFM Fato\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\Flat File Destination"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFM Fato\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ClienteNEncontrao]"
+                  connectionManagerRefId="Package.ConnectionManagers[ClienteNEncontrao]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILNRODOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILNRODOC"
+                      externalMetadataColumnId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILVALLIQ]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILVALLIQ"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILVALLIQ]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILVALLIQ]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILQTD]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILQTD"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILQTD]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILDATDOC]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TSOP_ORDBILDATDOC"
+                      externalMetadataColumnId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILDATDOC]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILDATDOC]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILREPNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TSOP_ORDBILREPNOM"
+                      externalMetadataColumnId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILREPNOM]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILSITNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILSITNOM"
+                      externalMetadataColumnId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILSITNOM]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILSITNOM]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILCANNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILCANNOM"
+                      externalMetadataColumnId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCANNOM]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCANNOM]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILCLICOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILCLICOD"
+                      externalMetadataColumnId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCLICOD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCLICOD]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILITECOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILITECOD"
+                      externalMetadataColumnId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILITECOD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILITECOD]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Error Output].Columns[ErrorColumn]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILNRODOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILVALLIQ]"
+                      dataType="numeric"
+                      name="TSOP_ORDBILVALLIQ"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      dataType="numeric"
+                      name="TSOP_ORDBILQTD"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILDATDOC]"
+                      dataType="dbTimeStamp"
+                      name="TSOP_ORDBILDATDOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILREPNOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILREPNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILSITNOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILSITNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCANNOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILCANNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCLICOD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILCLICOD" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILITECOD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILITECOD" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="i4"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="i4"
+                      name="ErrorColumn" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\LKP CLIENTE"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP CLIENTE"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM DIM_CLIENTE
+ WHERE STATUSREGISTRO = 'Current'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM DIM_CLIENTE
+ WHERE STATUSREGISTRO = 'Current') [refTable]
+where [refTable].[IDCLIENTE] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">20</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SKCLIENTE" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IDCLIENTE" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NOME" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ESTADO" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="REGIAO" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="STATUSREGISTRO" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCLICOD]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFM Fato\LKP CLIENTE.Connections[OleDbConnection]"
+                  connectionManagerID="{C29C30FD-556A-4694-8356-5293AB6719B6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destino.APPSOP_BI]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\LKP CLIENTE.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\LKP CLIENTE.Inputs[Lookup Input].Columns[TSOP_ORDBILCLICOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILCLICOD"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCLICOD]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">IDCLIENTE</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="RedirectRow"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFM Fato\LKP CLIENTE.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output].Columns[SKCLIENTE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output].Columns[SKCLIENTE]"
+                      name="SKCLIENTE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SKCLIENTE</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFM Fato\LKP CLIENTE.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFM Fato\LKP CLIENTE.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\LKP PRODUTO"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP PRODUTO"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM [dbo].[DIM_PRODUTO] 
+WHERE STATUSREGISTRO = 'Current'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM [dbo].[DIM_PRODUTO] 
+WHERE STATUSREGISTRO = 'Current') [refTable]
+where [refTable].[TSOP_ORDBILITECOD] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">20</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SKPRODUTO" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TSOP_ORDBILITECOD" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TSOP_ORDBILITENOM" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TSOP_ORDBILITEUNI" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TSOP_ORDBILITEFAM" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TSOP_ORDBILITEFAMPAI" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TSOP_ORDBILVALLIQ" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="STATUSREGISTRO" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILITECOD]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFM Fato\LKP PRODUTO.Connections[OleDbConnection]"
+                  connectionManagerID="{C29C30FD-556A-4694-8356-5293AB6719B6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destino.APPSOP_BI]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\LKP PRODUTO.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\LKP PRODUTO.Inputs[Lookup Input].Columns[TSOP_ORDBILITECOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILITECOD"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILITECOD]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">TSOP_ORDBILITECOD</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="RedirectRow"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFM Fato\LKP PRODUTO.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Match Output].Columns[SKPRODUTO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Match Output].Columns[SKPRODUTO]"
+                      name="SKPRODUTO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SKPRODUTO</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFM Fato\LKP PRODUTO.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFM Fato\LKP PRODUTO.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\LKP TEMPO"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP TEMPO"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DIM_TEMPO]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DIM_TEMPO]) [refTable]
+where [refTable].[Data] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SKTempo" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Data" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Dia" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Mes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Ano" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFM Fato\Data Conversion.Outputs[Data Conversion Output].Columns[DC_TSOP_ORDBILDATDOC]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFM Fato\LKP TEMPO.Connections[OleDbConnection]"
+                  connectionManagerID="{C29C30FD-556A-4694-8356-5293AB6719B6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destino.APPSOP_BI]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\LKP TEMPO.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\LKP TEMPO.Inputs[Lookup Input].Columns[DC_TSOP_ORDBILDATDOC]"
+                      cachedDataType="dbDate"
+                      cachedName="DC_TSOP_ORDBILDATDOC"
+                      lineageId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Output].Columns[DC_TSOP_ORDBILDATDOC]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Data</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFM Fato\LKP TEMPO.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Match Output].Columns[SKTempo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Match Output].Columns[SKTempo]"
+                      name="SKTempo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SKTempo</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFM Fato\LKP TEMPO.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFM Fato\LKP TEMPO.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\LKP VENDEDOR"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP VENDEDOR"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM [dbo].[DIM_VENDEDOR]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM [dbo].[DIM_VENDEDOR]) [refTable]
+where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSOP_CANAL] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">20</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SKVENDEDOR" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IDVENDEDOR" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NOME" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TSOP_PLANTA" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TSOP_CANAL" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="STATUSREGISTRO" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]};#{Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILSITNOM]};#{Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCANNOM]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFM Fato\LKP VENDEDOR.Connections[OleDbConnection]"
+                  connectionManagerID="{C29C30FD-556A-4694-8356-5293AB6719B6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destino.APPSOP_BI]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\LKP VENDEDOR.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\LKP VENDEDOR.Inputs[Lookup Input].Columns[TSOP_ORDBILSITNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILSITNOM"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILSITNOM]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">TSOP_PLANTA</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\LKP VENDEDOR.Inputs[Lookup Input].Columns[TSOP_ORDBILCANNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILCANNOM"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCANNOM]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">TSOP_CANAL</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\LKP VENDEDOR.Inputs[Lookup Input].Columns[TSOP_ORDBILREPNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TSOP_ORDBILREPNOM"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">NOME</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="RedirectRow"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFM Fato\LKP VENDEDOR.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Match Output].Columns[SKVENDEDOR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Match Output].Columns[SKVENDEDOR]"
+                      name="SKVENDEDOR"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SKVENDEDOR</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFM Fato\LKP VENDEDOR.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFM Fato\LKP VENDEDOR.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DIM_FATOVENDA]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFM Fato\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{C29C30FD-556A-4694-8356-5293AB6719B6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destino.APPSOP_BI]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILNRODOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILNRODOC"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILQTD]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILQTD"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILQTD]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SKCLIENTE]"
+                      cachedDataType="i4"
+                      cachedName="SKCLIENTE"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKCLIENTE]"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output].Columns[SKCLIENTE]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SKPRODUTO]"
+                      cachedDataType="i4"
+                      cachedName="SKPRODUTO"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKPRODUTO]"
+                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Match Output].Columns[SKPRODUTO]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SKVENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="SKVENDEDOR"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKVENDEDOR]"
+                      lineageId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Match Output].Columns[SKVENDEDOR]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SKTempo]"
+                      cachedDataType="i4"
+                      cachedName="SKTempo"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKTEMPO]"
+                      lineageId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Match Output].Columns[SKTempo]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILVALLIQ]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILVALLIQ"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VALORVENDA]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILVALLIQ]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      dataType="wstr"
+                      length="255"
+                      name="TSOP_ORDBILNRODOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKTEMPO]"
+                      dataType="i4"
+                      name="SKTEMPO" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKVENDEDOR]"
+                      dataType="i4"
+                      name="SKVENDEDOR" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKPRODUTO]"
+                      dataType="i4"
+                      name="SKPRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKCLIENTE]"
+                      dataType="i4"
+                      name="SKCLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VALORVENDA]"
+                      dataType="numeric"
+                      name="VALORVENDA"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      dataType="numeric"
+                      name="TSOP_ORDBILQTD"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DIM_FATOVENDA_ID]"
+                      dataType="i4"
+                      name="DIM_FATOVENDA_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT TSOP_ORDBILNRODOC = convert(nvarchar(255),V.TSOP_ORDBILNRODOC), 
+       V.TSOP_ORDBILVALLIQ, 
+	   V.TSOP_ORDBILQTD, 
+	   V.TSOP_ORDBILDATDOC,
+       TSOP_ORDBILREPNOM = convert(nvarchar(50),V.TSOP_ORDBILREPNOM), 
+	   TSOP_ORDBILSITNOM = convert(nvarchar(100),V.TSOP_ORDBILSITNOM), 
+	   TSOP_ORDBILCANNOM = convert(nvarchar(100),V.TSOP_ORDBILCANNOM),
+	   TSOP_ORDBILCLICOD = convert(nvarchar(255), V.TSOP_ORDBILCLICOD),
+	    TSOP_ORDBILITECOD = convert(nvarchar(255), V.TSOP_ORDBILITECOD)
+
+ FROM VSOP_ORDERBILLINGFULL V
+ WHERE V.TSOP_ORDBILTIPDOC = 'BILLING' 
+ AND (V.TSOP_ORDBILDATDOC &gt; ?) AND (V.TSOP_ORDBILDATDOC &lt;= ?)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{2B22C3E3-987C-40AB-B888-6ADEDF733CE0};"Parameter1:Input",{593EE5BE-F2A8-4721-942D-C72D04F0732A};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFM Fato\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{2539D9A6-7843-4CB3-890B-74C29C79F281}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Origem.AppSOP.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      length="255"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]"
+                      name="TSOP_ORDBILNRODOC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILVALLIQ]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILVALLIQ]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILVALLIQ]"
+                      name="TSOP_ORDBILVALLIQ"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILQTD]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILQTD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILQTD]"
+                      name="TSOP_ORDBILQTD"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILDATDOC]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILDATDOC]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILDATDOC]"
+                      name="TSOP_ORDBILDATDOC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILREPNOM]"
+                      length="50"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]"
+                      name="TSOP_ORDBILREPNOM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILSITNOM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILSITNOM]"
+                      length="100"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILSITNOM]"
+                      name="TSOP_ORDBILSITNOM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCANNOM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILCANNOM]"
+                      length="100"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCANNOM]"
+                      name="TSOP_ORDBILCANNOM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCLICOD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILCLICOD]"
+                      length="255"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCLICOD]"
+                      name="TSOP_ORDBILCLICOD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILITECOD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILITECOD]"
+                      length="255"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILITECOD]"
+                      name="TSOP_ORDBILITECOD"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      dataType="wstr"
+                      length="255"
+                      name="TSOP_ORDBILNRODOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILVALLIQ]"
+                      dataType="numeric"
+                      name="TSOP_ORDBILVALLIQ"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILQTD]"
+                      dataType="numeric"
+                      name="TSOP_ORDBILQTD"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILDATDOC]"
+                      dataType="dbTimeStamp"
+                      name="TSOP_ORDBILDATDOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILREPNOM]"
+                      dataType="wstr"
+                      length="50"
+                      name="TSOP_ORDBILREPNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILSITNOM]"
+                      dataType="wstr"
+                      length="100"
+                      name="TSOP_ORDBILSITNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILCANNOM]"
+                      dataType="wstr"
+                      length="100"
+                      name="TSOP_ORDBILCANNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILCLICOD]"
+                      dataType="wstr"
+                      length="255"
+                      name="TSOP_ORDBILCLICOD" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILITECOD]"
+                      dataType="wstr"
+                      length="255"
+                      name="TSOP_ORDBILITECOD" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILNRODOC]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILNRODOC]"
+                      name="TSOP_ORDBILNRODOC" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILVALLIQ]"
+                      dataType="numeric"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILVALLIQ]"
+                      name="TSOP_ORDBILVALLIQ"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILQTD]"
+                      dataType="numeric"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILQTD]"
+                      name="TSOP_ORDBILQTD"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILDATDOC]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILDATDOC]"
+                      name="TSOP_ORDBILDATDOC" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILREPNOM]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILREPNOM]"
+                      name="TSOP_ORDBILREPNOM" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILSITNOM]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILSITNOM]"
+                      name="TSOP_ORDBILSITNOM" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILCANNOM]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILCANNOM]"
+                      name="TSOP_ORDBILCANNOM" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILCLICOD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILCLICOD]"
+                      name="TSOP_ORDBILCLICOD" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILITECOD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILITECOD]"
+                      name="TSOP_ORDBILITECOD" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\ProdutoNEncontrado"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="ProdutoNEncontrado"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFM Fato\ProdutoNEncontrado.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ProdutoNaoEncontrado]"
+                  connectionManagerRefId="Package.ConnectionManagers[ProdutoNaoEncontrado]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILNRODOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILNRODOC"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILVALLIQ]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILVALLIQ"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILVALLIQ]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILVALLIQ]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILQTD]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILQTD"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILQTD]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILDATDOC]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TSOP_ORDBILDATDOC"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILDATDOC]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILDATDOC]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILREPNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TSOP_ORDBILREPNOM"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILREPNOM]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILSITNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILSITNOM"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILSITNOM]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILSITNOM]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILCANNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILCANNOM"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCANNOM]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCANNOM]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILCLICOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILCLICOD"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCLICOD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCLICOD]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILITECOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILITECOD"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILITECOD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILITECOD]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[SKCLIENTE]"
+                      cachedDataType="i4"
+                      cachedName="SKCLIENTE"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[SKCLIENTE]"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output].Columns[SKCLIENTE]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Error Output].Columns[ErrorColumn]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILNRODOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILVALLIQ]"
+                      dataType="numeric"
+                      name="TSOP_ORDBILVALLIQ"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      dataType="numeric"
+                      name="TSOP_ORDBILQTD"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILDATDOC]"
+                      dataType="dbTimeStamp"
+                      name="TSOP_ORDBILDATDOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILREPNOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILREPNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILSITNOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILSITNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCANNOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILCANNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCLICOD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILCLICOD" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILITECOD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILITECOD" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[SKCLIENTE]"
+                      dataType="i4"
+                      name="SKCLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="i4"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="i4"
+                      name="ErrorColumn" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\VendedorNEncontrado"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="VendedorNEncontrado"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFM Fato\VendedorNEncontrado.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[VendedorNEncontrado]"
+                  connectionManagerRefId="Package.ConnectionManagers[VendedorNEncontrado]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILNRODOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILNRODOC"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILVALLIQ]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILVALLIQ"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILVALLIQ]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILVALLIQ]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILQTD]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILQTD"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILQTD]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILDATDOC]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TSOP_ORDBILDATDOC"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILDATDOC]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILDATDOC]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILREPNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TSOP_ORDBILREPNOM"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILREPNOM]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILSITNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILSITNOM"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILSITNOM]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILSITNOM]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILCANNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILCANNOM"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCANNOM]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCANNOM]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILCLICOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILCLICOD"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCLICOD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCLICOD]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[TSOP_ORDBILITECOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILITECOD"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILITECOD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILITECOD]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[SKCLIENTE]"
+                      cachedDataType="i4"
+                      cachedName="SKCLIENTE"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[SKCLIENTE]"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output].Columns[SKCLIENTE]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[SKPRODUTO]"
+                      cachedDataType="i4"
+                      cachedName="SKPRODUTO"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[SKPRODUTO]"
+                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Match Output].Columns[SKPRODUTO]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Error Output].Columns[ErrorColumn]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILNRODOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILVALLIQ]"
+                      dataType="numeric"
+                      name="TSOP_ORDBILVALLIQ"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      dataType="numeric"
+                      name="TSOP_ORDBILQTD"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILDATDOC]"
+                      dataType="dbTimeStamp"
+                      name="TSOP_ORDBILDATDOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILREPNOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILREPNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILSITNOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILSITNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCANNOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILCANNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILCLICOD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILCLICOD" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[TSOP_ORDBILITECOD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TSOP_ORDBILITECOD" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[SKCLIENTE]"
+                      dataType="i4"
+                      name="SKCLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[SKPRODUTO]"
+                      dataType="i4"
+                      name="SKPRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="i4"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="i4"
+                      name="ErrorColumn" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFM Fato.Paths[Data Conversion Output]"
+              endId="Package\DFM Fato\LKP TEMPO.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[Lookup Error Output]"
+              endId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input]"
+              name="Lookup Error Output"
+              startId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Error Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[Lookup Error Output1]"
+              endId="Package\DFM Fato\VendedorNEncontrado.Inputs[Flat File Destination Input]"
+              name="Lookup Error Output"
+              startId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Error Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[Lookup Error Output2]"
+              endId="Package\DFM Fato\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Lookup Error Output"
+              startId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Error Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[Lookup Match Output]"
+              endId="Package\DFM Fato\LKP PRODUTO.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[Lookup Match Output1]"
+              endId="Package\DFM Fato\LKP VENDEDOR.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[Lookup Match Output2]"
+              endId="Package\DFM Fato\Data Conversion.Inputs[Data Conversion Input]"
+              name="Lookup Match Output"
+              startId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[Lookup Match Output3]"
+              endId="Package\DFM Fato\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[OLE DB Source Output]"
+              endId="Package\DFM Fato\LKP CLIENTE.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DT_Carga_FatoVenda"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{0c0a79e3-2610-4c92-8fbf-5b33678a8b71}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DT_Carga_FatoVenda"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::CurrentTime]=GetDate()" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DT_UltmaCarga_FatoVenda"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c52f53d9-2e2b-476f-9349-729ccad1876b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DT_UltmaCarga_FatoVenda"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C29C30FD-556A-4694-8356-5293AB6719B6}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="Select max(DT_ULTIMA_CARGA) LoadTime from dbo.CARGA_TABELA where tabela = 'DIM_FATOVENDA'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LoadTime"
+            SQLTask:DtsVariableName="User::LastLoadTime" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2A6A78F8-57A6-4C71-AC26-71034295E64D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C29C30FD-556A-4694-8356-5293AB6719B6}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="UPDATE CARGA_TABELA&#xA;SET DT_ULTIMA_CARGA = GETDATE()&#xA;WHERE  TABELA = 'DIM_FATOVENDA'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{18F1067B-5B6D-4406-BE14-34DD8E5B70F1}"
+      DTS:From="Package\DT_Carga_FatoVenda"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DT_UltmaCarga_FatoVenda" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{55B2EAF9-7608-40A1-A71A-6036CE74F225}"
+      DTS:From="Package\DT_UltmaCarga_FatoVenda"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\DFM Fato" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{BFBFE1E7-87B1-42DF-83FD-F77585F9D567}"
+      DTS:From="Package\DFM Fato"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Execute SQL Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="124,42"
+          Id="Package\DFM Fato"
+          TopLeft="215.5,255.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\DT_Carga_FatoVenda"
+          TopLeft="169,76" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\DT_UltmaCarga_FatoVenda"
+          TopLeft="161,160" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="262.5,118">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="265.5,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12,53.5"
+              Start="0,0"
+              End="12,46">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.75"
+                    Point2="0,26.75"
+                    Point3="4,26.75" />
+                  <mssgle:LineSegment
+                    End="8,26.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8,26.75"
+                    Point2="12,26.75"
+                    Point3="12,30.75" />
+                  <mssgle:LineSegment
+                    End="12,46" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="209,362" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="277.5,297.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13,64.5"
+              Start="0,0"
+              End="13,57">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.25"
+                    Point2="0,32.25"
+                    Point3="4,32.25" />
+                  <mssgle:LineSegment
+                    End="9,32.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9,32.25"
+                    Point2="13,32.25"
+                    Point3="13,36.25" />
+                  <mssgle:LineSegment
+                    End="13,57" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFM Fato">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="134,42"
+          Id="Package\DFM Fato\LKP TEMPO"
+          TopLeft="488.285714285714,440.428571428571" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\DFM Fato\LKP PRODUTO"
+          TopLeft="67.5,220" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\DFM Fato\LKP VENDEDOR"
+          TopLeft="68.25,312" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\DFM Fato\OLE DB Destination"
+          TopLeft="55.3571428571429,431.785714285714" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DFM Fato\Data Conversion"
+          TopLeft="416.25,312.5" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\DFM Fato\LKP CLIENTE"
+          TopLeft="66.75,107" />
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Lookup Match Output3]"
+          TopLeft="488.285714285714,461.428571428571">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-261.928571428571,-8.64285714285717"
+              Start="0,0"
+              End="-254.428571428571,-8.64285714285717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-126.964285714286,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-126.964285714286,0"
+                    Point2="-130.964285714286,0"
+                    Point3="-130.964285714286,-4" />
+                  <mssgle:LineSegment
+                    End="-130.964285714286,-4.64285714285717" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-130.964285714286,-4.64285714285717"
+                    Point2="-130.964285714286,-8.64285714285717"
+                    Point3="-134.964285714286,-8.64285714285717" />
+                  <mssgle:LineSegment
+                    End="-254.428571428571,-8.64285714285717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-179.155672433036,1,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Lookup Match Output2]"
+          TopLeft="222.25,333.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="194,0"
+              Start="0,0"
+              End="186.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="186.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="45.05861328125,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Lookup Match Output1]"
+          TopLeft="143.375,262">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,15.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Lookup Match Output]"
+          TopLeft="139.375,149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,25.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Data Conversion Output]"
+          TopLeft="494.25,354.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61.0357142857143,85.9285714285714"
+              Start="0,0"
+              End="61.0357142857143,78.4285714285714">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.9642857142857" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.9642857142857"
+                    Point2="0,42.9642857142857"
+                    Point3="4,42.9642857142857" />
+                  <mssgle:LineSegment
+                    End="57.0357142857143,42.9642857142857" />
+                  <mssgle:CubicBezierSegment
+                    Point1="57.0357142857143,42.9642857142857"
+                    Point2="61.0357142857143,42.9642857142857"
+                    Point3="61.0357142857143,46.9642857142857" />
+                  <mssgle:LineSegment
+                    End="61.0357142857143,78.4285714285714" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="176,42"
+          Id="Package\DFM Fato\ProdutoNEncontrado"
+          TopLeft="373,218" />
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Lookup Error Output]"
+          TopLeft="215.5,240">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="157.5,0"
+              Start="0,0"
+              End="150,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="150,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="29.13361328125,5,91.7327734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="184,42"
+          Id="Package\DFM Fato\VendedorNEncontrado"
+          TopLeft="274,374" />
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Lookup Error Output1]"
+          TopLeft="222.25,338.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51.75,56.3333333333333"
+              Start="0,0"
+              End="44.25,56.3333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.8394495412844,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.8394495412844,0"
+                    Point2="21.8394495412844,0"
+                    Point3="21.8394495412844,4" />
+                  <mssgle:LineSegment
+                    End="21.8394495412844,52.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.8394495412844,52.3333333333333"
+                    Point2="21.8394495412844,56.3333333333333"
+                    Point3="25.8394495412844,56.3333333333333" />
+                  <mssgle:LineSegment
+                    End="44.25,56.3333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.0269371774656,-17.609375,91.7327734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\DFM Fato\Flat File Destination"
+          TopLeft="369,106" />
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Lookup Error Output2]"
+          TopLeft="207.75,127.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="161.25,0"
+              Start="0,0"
+              End="153.75,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="153.75,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="31.00861328125,5,91.7327734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="150,42"
+          Id="Package\DFM Fato\OLE DB Source"
+          TopLeft="75,7" />
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[OLE DB Source Output]"
+          TopLeft="150,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12.75,58"
+              Start="0,0"
+              End="-12.75,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="-4,29" />
+                  <mssgle:LineSegment
+                    End="-8.75,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8.75,29"
+                    Point2="-12.75,29"
+                    Point3="-12.75,33" />
+                  <mssgle:LineSegment
+                    End="-12.75,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFM Fato\LKP TEMPO">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_TEMPO]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFM Fato\LKP PRODUTO">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFM Fato\LKP VENDEDOR">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFM Fato\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFM Fato\LKP CLIENTE">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFM Fato\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

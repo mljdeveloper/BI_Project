@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Origem.AppSOP.sa"
+  DTS:DTSID="{2539D9A6-7843-4CB3-890B-74C29C79F281}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=GHOS2023;User ID=sa;Initial Catalog=AppSOP;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkB1MNhC530aodqcCZ7uzjwAAAAACAAAAAAAQZgAAAAEAACAAAAALvuuIhSZw84cRRy8r1ZMND7whA/bh4bidKVEx6XTnMwAAAAAOgAAAAAIAACAAAACPm17lFwhh/J8unOGfcGy6/TnIw+luM0KzkYR6fxmtlIAAAABXz65Pbe0cs5WlaLfwZPgaXZ617CuGr0SQbCBuf09oqaC+M4nZuFtEnaidmbWJBeEeKt4CfTsoEp94jX1ak+/QsWla8XgC4PL48MBYK8SOIuw2/+tDikkgT2KC/st/9CAVRAxiVZrBoSALdO9dvnA68xkVwjhNSgdJ9PoRtHyk9kAAAACL/j/CT0V1trntPf8Ie9PhuKKpCSkrirE/lcRo0V/Dg0hdfiKAR1RSYZLhS8y8PlMPmu+zhKWXLon3xdaJcySS</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1062
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "BradySalesBI", "BradySalesBI\BradySalesBI.dtproj", "{CA56B292-11E4-46A2-BF89-65573CB2D254}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{46ADB08C-D8DD-4298-97FD-727013F25435}"
+	ProjectSection(SolutionItems) = preProject
+		CARGA_TABELA.sql = CARGA_TABELA.sql
+		DIM_CLIENTE.sql = DIM_CLIENTE.sql
+		DIM_PRODUTO.sql = DIM_PRODUTO.sql
+		DIM_VENDEDOR.sql = DIM_VENDEDOR.sql
+		Scripts\DropFKConstraint.sql = Scripts\DropFKConstraint.sql
+		PRC_BI_VENDEDOR.sql = PRC_BI_VENDEDOR.sql
+		VW_BI_CLIENTE.sql = VW_BI_CLIENTE.sql
+		VW_BI_PRODUTO.sql = VW_BI_PRODUTO.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA56B292-11E4-46A2-BF89-65573CB2D254}.Development|Default.ActiveCfg = Development
+		{CA56B292-11E4-46A2-BF89-65573CB2D254}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E89D7E4B-BF88-4488-A55D-2E106573BBFD}
+	EndGlobalSection
+EndGlobal
