@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="CargaGeral"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{ABE226CA-5B9F-4D20-A5C4-B4292490FF41}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{3AE6CCAF-65E1-4BB1-9911-7DDCD1DB894B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -84,7 +84,6 @@
       DTS:refId="Package\Tempo"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:Disabled="True"
       DTS:DTSID="{07BE1791-E7BE-4A04-90AB-F1E8ACE9FDBA}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
@@ -94,6 +93,7 @@
       <DTS:ObjectData>
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
+          <PackageName>Tempo.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -166,9 +166,21 @@
           Id="Package\Cliente"
           TopLeft="91.5,27.5" />
         <NodeLayout
+          Size="129,42"
+          Id="Package\FatoVenda"
+          TopLeft="93,369" />
+        <NodeLayout
           Size="116,42"
           Id="Package\Produto"
           TopLeft="95,115" />
+        <NodeLayout
+          Size="111,42"
+          Id="Package\Tempo"
+          TopLeft="97,284" />
+        <NodeLayout
+          Size="124,42"
+          Id="Package\Vendedor"
+          TopLeft="92,200" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="150,69.5">
@@ -191,10 +203,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="124,42"
-          Id="Package\Vendedor"
-          TopLeft="92,200" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="153.5,157">
@@ -217,10 +225,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="111,42"
-          Id="Package\Tempo"
-          TopLeft="97,284" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="153.25,242">
@@ -243,36 +247,20 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="129,42"
-          Id="Package\FatoVenda"
-          TopLeft="93,369" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="152.5,326">
+          TopLeft="155,326">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="32,43"
+              EndConnector="0,43"
               Start="0,0"
-              End="32,35.5">
+              End="0,35.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17.5"
-                    Point2="0,21.5"
-                    Point3="4,21.5" />
-                  <mssgle:LineSegment
-                    End="28,21.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="28,21.5"
-                    Point2="32,21.5"
-                    Point3="32,25.5" />
-                  <mssgle:LineSegment
-                    End="32,35.5" />
+                    End="0,35.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
