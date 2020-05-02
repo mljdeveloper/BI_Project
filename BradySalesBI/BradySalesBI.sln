@@ -8,10 +8,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{46ADB08C-D8DD-4298-97FD-727013F25435}"
 	ProjectSection(SolutionItems) = preProject
 		CARGA_TABELA.sql = CARGA_TABELA.sql
+		CREATE_SQL_SCRIPT_MODEL1.sql = CREATE_SQL_SCRIPT_MODEL1.sql
 		DIM_CLIENTE.sql = DIM_CLIENTE.sql
 		DIM_PRODUTO.sql = DIM_PRODUTO.sql
 		DIM_VENDEDOR.sql = DIM_VENDEDOR.sql
 		Scripts\DropFKConstraint.sql = Scripts\DropFKConstraint.sql
+		LOAD_DIM_TEMPO1.sql = LOAD_DIM_TEMPO1.sql
 		PRC_BI_VENDEDOR.sql = PRC_BI_VENDEDOR.sql
 		VW_BI_CLIENTE.sql = VW_BI_CLIENTE.sql
 		VW_BI_PRODUTO.sql = VW_BI_PRODUTO.sql

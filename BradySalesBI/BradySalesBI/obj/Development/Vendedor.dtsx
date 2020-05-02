@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Vendedor"
   DTS:PackageType="5"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{57B853AE-B006-49B6-A9EC-96DF011E0116}">
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{FE9A3021-C5A8-4426-9D4E-641FBDA27195}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -513,9 +513,17 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="273,42"
+          Id="Package\ADD CONSTRAINT NA FATO_VENDEDOR"
+          TopLeft="342,413" />
+        <NodeLayout
           Size="149,42"
           Id="Package\DFT_Vendedor"
           TopLeft="263.5,339.5" />
+        <NodeLayout
+          Size="262,42"
+          Id="Package\DROP CONSTRAINT FATO_VENDEDOR"
+          TopLeft="166,16" />
         <NodeLayout
           Size="176,42"
           Id="Package\DT_Carga_Vendedor"
@@ -524,6 +532,10 @@
           Size="204,42"
           Id="Package\DT_UltmaCarga_Vendedor"
           TopLeft="263.5,231.5" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\TRUNCATE TABLE VENDEDOR"
+          TopLeft="68,81" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="309,194">
@@ -592,14 +604,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="262,42"
-          Id="Package\DROP CONSTRAINT FATO_VENDEDOR"
-          TopLeft="166,16" />
-        <NodeLayout
-          Size="222,42"
-          Id="Package\TRUNCATE TABLE VENDEDOR"
-          TopLeft="68,81" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="297,58">
@@ -668,10 +672,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="273,42"
-          Id="Package\ADD CONSTRAINT NA FATO_VENDEDOR"
-          TopLeft="342,413" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="338,381.5">
@@ -715,13 +715,13 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="176,42"
-          Id="Package\DFT_Vendedor\SOURCE VENDEDOR"
-          TopLeft="184.5,65.5" />
-        <NodeLayout
           Size="171,42"
           Id="Package\DFT_Vendedor\OLE DB Destination"
           TopLeft="206,180" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\DFT_Vendedor\SOURCE VENDEDOR"
+          TopLeft="184.5,65.5" />
         <EdgeLayout
           Id="Package\DFT_Vendedor.Paths[OLE DB Source Output]"
           TopLeft="272.5,107.5">
@@ -760,14 +760,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT_Vendedor\SOURCE VENDEDOR">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\DFT_Vendedor\OLE DB Destination">
     <Properties>
       <Property>
@@ -777,6 +769,14 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Vendedor\SOURCE VENDEDOR">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
