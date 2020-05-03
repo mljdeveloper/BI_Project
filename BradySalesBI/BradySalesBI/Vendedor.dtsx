@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Vendedor"
   DTS:PackageType="5"
-  DTS:VersionBuild="30"
-  DTS:VersionGUID="{FE9A3021-C5A8-4426-9D4E-641FBDA27195}">
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{A86F9D80-444D-4BE6-85F1-7A364173858E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -37,21 +37,48 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\ADD CONSTRAINT NA FATO_VENDEDOR"
+      DTS:refId="Package\Busca Primeira Data de Emissao de NF"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{1D87D5B0-8F25-4AA4-98EB-C23709A7FA0B}"
+      DTS:DTSID="{41bcf034-8176-4398-98cd-b54b9f514335}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="ADD CONSTRAINT NA FATO_VENDEDOR"
+      DTS:ObjectName="Busca Primeira Data de Emissao de NF"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{C29C30FD-556A-4694-8356-5293AB6719B6}"
+          SQLTask:Connection="{2539D9A6-7843-4CB3-890B-74C29C79F281}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="ALTER TABLE [dbo].[DIM_FATOVENDA]  WITH CHECK ADD  CONSTRAINT [FK_DIM_FATOVENDA_DIM_VENDEDOR] FOREIGN KEY([SKVENDEDOR])&#xA;REFERENCES [dbo].[DIM_VENDEDOR] ([SKVENDEDOR])" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="select min(tsop_ordbildatdoc) PrimeiraNota from VSOP_OrderBilling where tsop_ordbiltipdoc = 'Billing' and year(tsop_ordbildatdoc) &gt;=  year(getdate())"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="PrimeiraNota"
+            SQLTask:DtsVariableName="User::LastLoadTime" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Busca Ultima Data de Emissoa de NF"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6DD1AAC9-A699-4895-853A-514727B64166}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Busca Ultima Data de Emissoa de NF"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2539D9A6-7843-4CB3-890B-74C29C79F281}"
+          SQLTask:SqlStatementSource="select max(tsop_ordbildatdoc) UltimaNF  from VSOP_OrderBilling where tsop_ordbiltipdoc = 'Billing'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="UltimaNF"
+            SQLTask:DtsVariableName="User::CurrentTime" />
+        </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -69,11 +96,161 @@
           version="1">
           <components>
             <component
-              refId="Package\DFT_Vendedor\OLE DB Destination"
+              refId="Package\DFT_Vendedor\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_Vendedor\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Vendedor\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT_Vendedor\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\Derived Column.Outputs[Derived Column Output].Columns[STATUSREGISTRO]"
+                      dataType="wstr"
+                      description="STATUSREGISTRO"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\DFT_Vendedor\Derived Column.Outputs[Derived Column Output].Columns[STATUSREGISTRO]"
+                      name="STATUSREGISTRO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,15)("Expired")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,15)("Expired")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Vendedor\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT_Vendedor\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Vendedor\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Vendedor\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Vendedor\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_Vendedor\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Vendedor\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT_Vendedor\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\Derived Column 1.Outputs[Derived Column Output].Columns[STATUSREGISTRO]"
+                      dataType="wstr"
+                      description="STATUSREGISTRO"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\DFT_Vendedor\Derived Column 1.Outputs[Derived Column Output].Columns[STATUSREGISTRO]"
+                      name="STATUSREGISTRO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,15)("Current")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,15)("Current")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Vendedor\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT_Vendedor\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Vendedor\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Vendedor\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Vendedor\Insert Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="OLE DB Destination"
+              name="Insert Destination"
               usesDispositions="true"
               version="4">
               <properties>
@@ -106,7 +283,7 @@
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">3</property>
+                  typeConverter="AccessMode">0</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -118,7 +295,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                  name="FastLoadOptions"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -126,7 +303,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFT_Vendedor\OLE DB Destination.Connections[OleDbConnection]"
+                  refId="Package\DFT_Vendedor\Insert Destination.Connections[OleDbConnection]"
                   connectionManagerID="{C29C30FD-556A-4694-8356-5293AB6719B6}:external"
                   connectionManagerRefId="Project.ConnectionManagers[Destino.APPSOP_BI]"
                   description="The OLE DB runtime connection used to access the database."
@@ -134,61 +311,76 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TSOP_PLANTA]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="TSOP_PLANTA"
-                      externalMetadataColumnId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_PLANTA]"
-                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_PLANTA]" />
-                    <inputColumn
-                      refId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TSOP_CANAL]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="TSOP_CANAL"
-                      externalMetadataColumnId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_CANAL]"
-                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_CANAL]" />
-                    <inputColumn
-                      refId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILREPNOM]"
+                      refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILREPNOM]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="TSOP_ORDBILREPNOM"
-                      externalMetadataColumnId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
-                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]" />
+                      externalMetadataColumnId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
+                      lineageId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILREPNOM]" />
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].Columns[TSOP_PLANTA]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_PLANTA"
+                      externalMetadataColumnId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_PLANTA]"
+                      lineageId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_PLANTA]" />
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].Columns[TSOP_CANAL]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_CANAL"
+                      externalMetadataColumnId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_CANAL]"
+                      lineageId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_CANAL]" />
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].Columns[TSIS_USUEML]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSIS_USUEML"
+                      externalMetadataColumnId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_EMAIL]"
+                      lineageId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSIS_USUEML]" />
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].Columns[STATUSREGISTRO]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="STATUSREGISTRO"
+                      externalMetadataColumnId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATUSREGISTRO]"
+                      lineageId="Package\DFT_Vendedor\Derived Column 1.Outputs[Derived Column Output].Columns[STATUSREGISTRO]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKVENDEDOR]"
+                      refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKVENDEDOR]"
                       dataType="i4"
                       name="SKVENDEDOR" />
                     <externalMetadataColumn
-                      refId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDVENDEDOR]"
-                      dataType="i4"
-                      name="IDVENDEDOR" />
-                    <externalMetadataColumn
-                      refId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
+                      refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
                       dataType="wstr"
                       length="50"
                       name="NOME" />
                     <externalMetadataColumn
-                      refId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_PLANTA]"
+                      refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_PLANTA]"
                       dataType="wstr"
                       length="100"
                       name="TSOP_PLANTA" />
                     <externalMetadataColumn
-                      refId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_CANAL]"
+                      refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_CANAL]"
                       dataType="wstr"
                       length="100"
                       name="TSOP_CANAL" />
                     <externalMetadataColumn
-                      refId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATUSREGISTRO]"
+                      refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_EMAIL]"
+                      dataType="wstr"
+                      length="100"
+                      name="TSOP_EMAIL" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATUSREGISTRO]"
                       dataType="wstr"
                       length="15"
                       name="STATUSREGISTRO" />
@@ -197,25 +389,377 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DFT_Vendedor\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DFT_Vendedor\Insert Destination.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT_Vendedor\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DFT_Vendedor\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFT_Vendedor\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFT_Vendedor\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFT_Vendedor\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFT_Vendedor\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFT_Vendedor\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFT_Vendedor\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Vendedor\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DIM_VENDEDOR] SET [STATUSREGISTRO] = ? WHERE [NOME] = ? AND [TSOP_CANAL] = ? AND [TSOP_PLANTA] = ? AND [STATUSREGISTRO] = 'Current'</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Vendedor\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{C29C30FD-556A-4694-8356-5293AB6719B6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destino.APPSOP_BI]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].Columns[TSOP_ORDBILREPNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TSOP_ORDBILREPNOM"
+                      externalMetadataColumnId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]" />
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].Columns[TSOP_CANAL]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_CANAL"
+                      externalMetadataColumnId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_CANAL]" />
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].Columns[TSOP_PLANTA]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_PLANTA"
+                      externalMetadataColumnId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_PLANTA]" />
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].Columns[STATUSREGISTRO]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="STATUSREGISTRO"
+                      externalMetadataColumnId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DFT_Vendedor\Derived Column.Outputs[Derived Column Output].Columns[STATUSREGISTRO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="15"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="100"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="wstr"
+                      length="100"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Vendedor\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Vendedor\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Vendedor\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Vendedor\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Vendedor\Slowly Changing Dimension"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="Slowly Changing Dimension"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [NOME], [TSOP_CANAL], [TSOP_EMAIL], [TSOP_PLANTA],[STATUSREGISTRO] FROM [dbo].[DIM_VENDEDOR]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere">[STATUSREGISTRO] = 'Current'</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Vendedor\Slowly Changing Dimension.Connections[LookupConnection]"
+                  connectionManagerID="{C29C30FD-556A-4694-8356-5293AB6719B6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destino.APPSOP_BI]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TSOP_ORDBILREPNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TSOP_ORDBILREPNOM"
+                      externalMetadataColumnId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NOME]"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TSOP_CANAL]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_CANAL"
+                      externalMetadataColumnId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_CANAL]"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_CANAL]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TSIS_USUEML]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSIS_USUEML"
+                      externalMetadataColumnId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_EMAIL]"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSIS_USUEML]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TSOP_PLANTA]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_PLANTA"
+                      externalMetadataColumnId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_PLANTA]"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_PLANTA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NOME]"
+                      dataType="wstr"
+                      length="50"
+                      name="NOME" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_CANAL]"
+                      dataType="wstr"
+                      length="100"
+                      name="TSOP_CANAL" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_EMAIL]"
+                      dataType="wstr"
+                      length="100"
+                      name="TSOP_EMAIL" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_PLANTA]"
+                      dataType="wstr"
+                      length="100"
+                      name="TSOP_PLANTA" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[STATUSREGISTRO]"
+                      dataType="wstr"
+                      length="15"
+                      name="STATUSREGISTRO" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Vendedor\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Vendedor\Slowly Changing Dimension.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Vendedor\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Vendedor\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Vendedor\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Vendedor\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
                   <externalMetadataColumns />
                 </output>
               </outputs>
@@ -311,6 +855,16 @@
                       lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]"
                       name="TSOP_ORDBILREPNOM"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSIS_USUEML]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].ExternalColumns[TSIS_USUEML]"
+                      length="100"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSIS_USUEML]"
+                      name="TSIS_USUEML"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -329,6 +883,11 @@
                       dataType="wstr"
                       length="50"
                       name="TSOP_ORDBILREPNOM" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].ExternalColumns[TSIS_USUEML]"
+                      dataType="wstr"
+                      length="100"
+                      name="TSIS_USUEML" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -355,6 +914,12 @@
                       lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILREPNOM]"
                       name="TSOP_ORDBILREPNOM" />
                     <outputColumn
+                      refId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Error Output].Columns[TSIS_USUEML]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Error Output].Columns[TSIS_USUEML]"
+                      name="TSIS_USUEML" />
+                    <outputColumn
                       refId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
                       lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
@@ -371,90 +936,222 @@
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\DFT_Vendedor\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 1].Columns[TSOP_PLANTA]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_PLANTA"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_PLANTA]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_PLANTA]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 1].Columns[TSOP_CANAL]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_CANAL"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_CANAL]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_CANAL]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 1].Columns[TSOP_ORDBILREPNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TSOP_ORDBILREPNOM"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILREPNOM]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 1].Columns[TSIS_USUEML]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSIS_USUEML"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSIS_USUEML]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSIS_USUEML]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 2].Columns[TSOP_PLANTA]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_PLANTA"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_PLANTA]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_PLANTA]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 2].Columns[TSOP_CANAL]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_CANAL"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_CANAL]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_CANAL]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 2].Columns[TSOP_ORDBILREPNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TSOP_ORDBILREPNOM"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILREPNOM]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 2].Columns[TSIS_USUEML]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSIS_USUEML"
+                      lineageId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSIS_USUEML]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSIS_USUEML]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_PLANTA]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_PLANTA]"
+                      name="TSOP_PLANTA" />
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_CANAL]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_CANAL]"
+                      name="TSOP_CANAL" />
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILREPNOM]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILREPNOM]"
+                      name="TSOP_ORDBILREPNOM" />
+                    <outputColumn
+                      refId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSIS_USUEML]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1].Columns[TSIS_USUEML]"
+                      name="TSIS_USUEML" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
+              refId="Package\DFT_Vendedor.Paths[Derived Column Output]"
+              endId="Package\DFT_Vendedor\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\DFT_Vendedor\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT_Vendedor.Paths[Derived Column Output1]"
+              endId="Package\DFT_Vendedor\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DFT_Vendedor\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT_Vendedor.Paths[Historical Attribute Inserts Output]"
+              endId="Package\DFT_Vendedor\Derived Column.Inputs[Derived Column Input]"
+              name="Historical Attribute Inserts Output"
+              startId="Package\DFT_Vendedor\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]" />
+            <path
+              refId="Package\DFT_Vendedor.Paths[New Output]"
+              endId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 1]"
+              name="New Output"
+              startId="Package\DFT_Vendedor\Slowly Changing Dimension.Outputs[New Output]" />
+            <path
+              refId="Package\DFT_Vendedor.Paths[OLE DB Command Output]"
+              endId="Package\DFT_Vendedor\Union All.Inputs[Union All Input 2]"
+              name="OLE DB Command Output"
+              startId="Package\DFT_Vendedor\OLE DB Command.Outputs[OLE DB Command Output]" />
+            <path
               refId="Package\DFT_Vendedor.Paths[OLE DB Source Output]"
-              endId="Package\DFT_Vendedor\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              endId="Package\DFT_Vendedor\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
               name="OLE DB Source Output"
               startId="Package\DFT_Vendedor\SOURCE VENDEDOR.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_Vendedor.Paths[Union All Output 1]"
+              endId="Package\DFT_Vendedor\Derived Column 1.Inputs[Derived Column Input]"
+              name="Union All Output 1"
+              startId="Package\DFT_Vendedor\Union All.Outputs[Union All Output 1]" />
           </paths>
         </pipeline>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\DROP CONSTRAINT FATO_VENDEDOR"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{400E2E0F-B7DD-41B8-B7F6-AD9480C51363}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="DROP CONSTRAINT FATO_VENDEDOR"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{C29C30FD-556A-4694-8356-5293AB6719B6}"
-          SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="if object_id('FK_DIM_FATOVENDA_DIM_VENDEDOR') is not null&#xA;alter table DIM_FATOVENDA&#xA;drop constraint [FK_DIM_FATOVENDA_DIM_VENDEDOR]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\DT_Carga_Vendedor"
-      DTS:CreationName="Microsoft.ExpressionTask"
-      DTS:Description="Expression Task"
-      DTS:DTSID="{0596516a-f7ea-48eb-86f4-2d5b0cc6b819}"
-      DTS:ExecutableType="Microsoft.ExpressionTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="DT_Carga_Vendedor"
-      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <ExpressionTask
-          Expression="@[User::CurrentTime]=GetDate()" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\DT_UltmaCarga_Vendedor"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{41bcf034-8176-4398-98cd-b54b9f514335}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="DT_UltmaCarga_Vendedor"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{C29C30FD-556A-4694-8356-5293AB6719B6}"
-          SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="Select max(DT_ULTIMA_CARGA) LoadTime from dbo.CARGA_TABELA where tabela = 'DIM_FATOVENDA'"
-          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ResultBinding
-            SQLTask:ResultName="LoadTime"
-            SQLTask:DtsVariableName="User::LastLoadTime" />
-        </SQLTask:SqlTaskData>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\TRUNCATE TABLE VENDEDOR"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{2E0E3092-708E-4B9C-969F-B9009F14F2FE}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="TRUNCATE TABLE VENDEDOR"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{C29C30FD-556A-4694-8356-5293AB6719B6}"
-          SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE DIM_VENDEDOR" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -462,43 +1159,19 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{96415BF7-5D50-447F-BFDF-D6FAFB2F3FBD}"
-      DTS:From="Package\DT_Carga_Vendedor"
+      DTS:DTSID="{EE838CFC-C1F7-4052-871B-73066387B905}"
+      DTS:From="Package\Busca Ultima Data de Emissoa de NF"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\DT_UltmaCarga_Vendedor" />
+      DTS:To="Package\Busca Primeira Data de Emissao de NF" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
       DTS:DTSID="{CB1DBE31-B776-4F44-B452-730F49119194}"
-      DTS:From="Package\DT_UltmaCarga_Vendedor"
+      DTS:From="Package\Busca Primeira Data de Emissao de NF"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\DFT_Vendedor" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
-      DTS:CreationName=""
-      DTS:DTSID="{327BA9B4-3539-40B2-8BCF-FDEE5BD469D4}"
-      DTS:From="Package\DROP CONSTRAINT FATO_VENDEDOR"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 2"
-      DTS:To="Package\TRUNCATE TABLE VENDEDOR" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
-      DTS:CreationName=""
-      DTS:DTSID="{184E45B3-1B5B-4FCC-A6DA-5A82B829DB25}"
-      DTS:From="Package\TRUNCATE TABLE VENDEDOR"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 3"
-      DTS:To="Package\DT_Carga_Vendedor" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
-      DTS:CreationName=""
-      DTS:DTSID="{53165B8D-CF20-4D11-B745-9A515D2FCDB2}"
-      DTS:From="Package\DFT_Vendedor"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 4"
-      DTS:To="Package\ADD CONSTRAINT NA FATO_VENDEDOR" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -511,91 +1184,41 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="273,42"
-          Id="Package\ADD CONSTRAINT NA FATO_VENDEDOR"
-          TopLeft="342,413" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="149,42"
           Id="Package\DFT_Vendedor"
-          TopLeft="263.5,339.5" />
+          TopLeft="240.5,313.5" />
         <NodeLayout
-          Size="262,42"
-          Id="Package\DROP CONSTRAINT FATO_VENDEDOR"
-          TopLeft="166,16" />
-        <NodeLayout
-          Size="176,42"
-          Id="Package\DT_Carga_Vendedor"
-          TopLeft="221,152" />
-        <NodeLayout
-          Size="204,42"
-          Id="Package\DT_UltmaCarga_Vendedor"
-          TopLeft="263.5,231.5" />
-        <NodeLayout
-          Size="222,42"
-          Id="Package\TRUNCATE TABLE VENDEDOR"
-          TopLeft="68,81" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="309,194">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="56.5,37.5"
-              Start="0,0"
-              End="56.5,30">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,14.75" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14.75"
-                    Point2="0,18.75"
-                    Point3="4,18.75" />
-                  <mssgle:LineSegment
-                    End="52.5,18.75" />
-                  <mssgle:CubicBezierSegment
-                    Point1="52.5,18.75"
-                    Point2="56.5,18.75"
-                    Point3="56.5,22.75" />
-                  <mssgle:LineSegment
-                    End="56.5,30" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="261,42"
+          Id="Package\Busca Primeira Data de Emissao de NF"
+          TopLeft="202.5,175.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="365.5,273.5">
+          TopLeft="333,217.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-27.5,66"
+              EndConnector="-18,96"
               Start="0,0"
-              End="-27.5,58.5">
+              End="-18,88.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29" />
+                    End="0,44" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,29"
-                    Point2="0,33"
-                    Point3="-4,33" />
+                    Point1="0,44"
+                    Point2="0,48"
+                    Point3="-4,48" />
                   <mssgle:LineSegment
-                    End="-23.5,33" />
+                    End="-14,48" />
                   <mssgle:CubicBezierSegment
-                    Point1="-23.5,33"
-                    Point2="-27.5,33"
-                    Point3="-27.5,37" />
+                    Point1="-14,48"
+                    Point2="-18,48"
+                    Point3="-18,52" />
                   <mssgle:LineSegment
-                    End="-27.5,58.5" />
+                    End="-18,88.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -604,100 +1227,24 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="253,42"
+          Id="Package\Busca Ultima Data de Emissoa de NF"
+          TopLeft="205,84" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="297,58">
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="332.25,126">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-118,23"
+              EndConnector="0,49.5"
               Start="0,0"
-              End="-118,15.5">
+              End="0,42">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,7.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,7.5"
-                    Point2="0,11.5"
-                    Point3="-4,11.5" />
-                  <mssgle:LineSegment
-                    End="-114,11.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-114,11.5"
-                    Point2="-118,11.5"
-                    Point3="-118,15.5" />
-                  <mssgle:LineSegment
-                    End="-118,15.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="179,123">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="130,29"
-              Start="0,0"
-              End="130,21.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,10.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,10.5"
-                    Point2="0,14.5"
-                    Point3="4,14.5" />
-                  <mssgle:LineSegment
-                    End="126,14.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="126,14.5"
-                    Point2="130,14.5"
-                    Point3="130,18.5" />
-                  <mssgle:LineSegment
-                    End="130,21.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="338,381.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="140.5,31.5"
-              Start="0,0"
-              End="140.5,24">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,11.75" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.75"
-                    Point2="0,15.75"
-                    Point3="4,15.75" />
-                  <mssgle:LineSegment
-                    End="136.5,15.75" />
-                  <mssgle:CubicBezierSegment
-                    Point1="136.5,15.75"
-                    Point2="140.5,15.75"
-                    Point3="140.5,19.75" />
-                  <mssgle:LineSegment
-                    End="140.5,24" />
+                    End="0,42" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -713,41 +1260,223 @@
     design-time-name="Package\DFT_Vendedor">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="171,42"
-          Id="Package\DFT_Vendedor\OLE DB Destination"
-          TopLeft="206,180" />
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\DFT_Vendedor\SOURCE VENDEDOR"
-          TopLeft="184.5,65.5" />
+          TopLeft="144.5,5.5" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\DFT_Vendedor\Slowly Changing Dimension"
+          TopLeft="128,107.5" />
         <EdgeLayout
           Id="Package\DFT_Vendedor.Paths[OLE DB Source Output]"
-          TopLeft="272.5,107.5">
+          TopLeft="232.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="19,72.5"
+              EndConnector="0,60"
               Start="0,0"
-              End="19,65">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,32.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,32.25"
-                    Point2="0,36.25"
-                    Point3="4,36.25" />
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154,42"
+          Id="Package\DFT_Vendedor\Derived Column"
+          TopLeft="17.5,209.5" />
+        <EdgeLayout
+          Id="Package\DFT_Vendedor.Paths[Historical Attribute Inserts Output]"
+          TopLeft="199,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-104.5,60"
+              Start="0,0"
+              End="-104.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="15,36.25" />
+                    End="0,20.2735042735043" />
                   <mssgle:CubicBezierSegment
-                    Point1="15,36.25"
-                    Point2="19,36.25"
-                    Point3="19,40.25" />
+                    Point1="0,20.2735042735043"
+                    Point2="0,24.2735042735043"
+                    Point3="-4,24.2735042735043" />
                   <mssgle:LineSegment
-                    End="19,65" />
+                    End="-100.5,24.2735042735043" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-100.5,24.2735042735043"
+                    Point2="-104.5,24.2735042735043"
+                    Point3="-104.5,28.2735042735043" />
+                  <mssgle:LineSegment
+                    End="-104.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-127.30638671875,29.2735042735043,150.1127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="166,42"
+          Id="Package\DFT_Vendedor\OLE DB Command"
+          TopLeft="5.50000000000003,311.5" />
+        <EdgeLayout
+          Id="Package\DFT_Vendedor.Paths[Derived Column Output]"
+          TopLeft="91.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\DFT_Vendedor\Union All"
+          TopLeft="172,413.5" />
+        <EdgeLayout
+          Id="Package\DFT_Vendedor.Paths[New Output]"
+          TopLeft="266,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.6666666666666,264"
+              Start="0,0"
+              End="-14.6666666666666,256.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,127.104705383637" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,127.104705383637"
+                    Point2="0,131.104705383637"
+                    Point3="-4,131.104705383637" />
+                  <mssgle:LineSegment
+                    End="-10.6666666666666,131.104705383637" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.6666666666666,131.104705383637"
+                    Point2="-14.6666666666666,131.104705383637"
+                    Point3="-14.6666666666666,135.104705383637" />
+                  <mssgle:LineSegment
+                    End="-14.6666666666666,256.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-34.4247200520833,136.104705383637,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Vendedor.Paths[OLE DB Command Output]"
+          TopLeft="88.5,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="125.166666666667,60"
+              Start="0,0"
+              End="125.166666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5301794453507" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5301794453507"
+                    Point2="0,35.5301794453507"
+                    Point3="4,35.5301794453507" />
+                  <mssgle:LineSegment
+                    End="121.166666666667,35.5301794453507" />
+                  <mssgle:CubicBezierSegment
+                    Point1="121.166666666667,35.5301794453507"
+                    Point2="125.166666666667,35.5301794453507"
+                    Point3="125.166666666667,39.5301794453507" />
+                  <mssgle:LineSegment
+                    End="125.166666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="163,42"
+          Id="Package\DFT_Vendedor\Derived Column 1"
+          TopLeft="151,515.5" />
+        <EdgeLayout
+          Id="Package\DFT_Vendedor.Paths[Union All Output 1]"
+          TopLeft="232.5,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="163,42"
+          Id="Package\DFT_Vendedor\Insert Destination"
+          TopLeft="151,617.5" />
+        <EdgeLayout
+          Id="Package\DFT_Vendedor.Paths[Derived Column Output1]"
+          TopLeft="232.5,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -760,23 +1489,68 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT_Vendedor\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\DFT_Vendedor\SOURCE VENDEDOR">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Vendedor\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{C29C30FD-556A-4694-8356-5293AB6719B6}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[DIM_VENDEDOR]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;NOME&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_CANAL]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;TSOP_CANAL&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSIS_USUEML]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;TSOP_EMAIL&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;SOURCE VENDEDOR.Outputs[OLE DB Source Output].Columns[TSOP_PLANTA]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;TSOP_PLANTA&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;true&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn&gt;STATUSREGISTRO&lt;/CurrentIndicatorColumn&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent&gt;Current&lt;/ValueCurrent&gt;
+  &lt;ValueExpired&gt;Expired&lt;/ValueExpired&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

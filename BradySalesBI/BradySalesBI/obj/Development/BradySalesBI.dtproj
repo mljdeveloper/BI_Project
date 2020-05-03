@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-99M8LEG</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkB1MNhC530aodqcCZ7uzjwAAAAACAAAAAAAQZgAAAAEAACAAAABADgLxnwEY3aKWyADAZcHJWqmLs2iJfTJN2LV806SdvgAAAAAOgAAAAAIAACAAAAC+/sald5mMJbLZGApwnpTiu/1crahM5a00/Kmt1l1HeZAAAADSzJkkIjmrGeA/sDNfPlnwYzXYIBagz7tQDv/tIHsA4mV4zNknd9XDYwLCWfIifonFLr7fagjSHI8/7IVMQyK2EO3ts8+nXGmL1dvaeQZD/PMlaka1D+F3tQiUY9zNSre3imyULe0E5mfccjol/NusDqpm/sA/LHEtKfDOaOfBkG631r0TamDaCeL4VQOMWLZAAAAA/88UpRjAHWXshvIqFt6VE47mZOVHCGdssAihnkoeb80AvoSM68tzXRXcxoBKG3SQdqo8onOG77ZWzmxRvBABYA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkB1MNhC530aodqcCZ7uzjwAAAAACAAAAAAAQZgAAAAEAACAAAADsiUNW2rDs386RwUxnL5umqrzpZVCUqXxfCMWSrw1ftgAAAAAOgAAAAAIAACAAAABrJ+uKVVaHw8elb6dPFM/jLLLzF3ihFdsQo4fUJ/VcW5AAAAB58d7qL7knoHpXCiSz2gwsRNrGI4MUWsKA15SI6E3UKO6xqb3Yn/DBCNTXfNxjRDGWF4ue72Ql9BGDaEjGJIKhtC9txTRGghC+7S5FkeotNiOcfT7SrU348atnzJlrcMuT6yllOj0Xp/zY5ZMK0YHdGplO7qM+XxpEvVToICSDBqggX1ruTxacOTu7JaN9DC5AAAAA5eGMtPR5k66q3vT2G5eEFwQtzkGVW/yoqYUoo6nQNs8q8tZzyNxiJi2t2JWzYi9mWU7U7tdyvcPUpAPIGPzN2A==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -305,10 +305,10 @@
                 <SSIS:Property SSIS:Name="Name">Vendedor</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">30</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">39</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{FE9A3021-C5A8-4426-9D4E-641FBDA27195}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{A86F9D80-444D-4BE6-85F1-7A364173858E}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -444,10 +444,10 @@
                 <SSIS:Property SSIS:Name="Name">FatoVenda</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">61</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">66</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{C0858EC3-F65D-4BB2-B928-0B98C9F2BABD}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{783F3E73-7DEE-4547-B5FC-CFB5B991D9F4}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -525,7 +525,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">C:\Cursos\EDX\ClienteNEncontrado.txt</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Cursos\Log_OutputError\ClienteNEncontrado.txt</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -839,7 +839,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">C:\Cursos\EDX\ProdutoNaoEncontrado.txt</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Cursos\Log_OutputError\ProdutoNaoEncontrado.txt</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -1036,7 +1036,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">C:\Cursos\EDX\VendedorNEncontrado.txt</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Cursos\Log_OutputError\VendedorNEncontrado.txt</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
