@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="FatoVenda"
   DTS:PackageType="5"
-  DTS:VersionBuild="66"
-  DTS:VersionGUID="{783F3E73-7DEE-4547-B5FC-CFB5B991D9F4}">
+  DTS:VersionBuild="73"
+  DTS:VersionGUID="{085D939E-A2FD-4D99-9387-C8CE04368596}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -425,6 +425,24 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Atualiza Data de Ultima Carga"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2A6A78F8-57A6-4C71-AC26-71034295E64D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Atualiza Data de Ultima Carga"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C29C30FD-556A-4694-8356-5293AB6719B6}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="UPDATE CARGA_TABELA&#xA;SET DT_ULTIMA_CARGA = GETDATE()&#xA;WHERE  TABELA = 'DIM_FATOVENDA'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\DFM Fato"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
@@ -506,6 +524,156 @@
                       refId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFM Fato\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\Derived Column.Outputs[Derived Column Output].Columns[STATUSREGISTRO]"
+                      dataType="wstr"
+                      description="STATUSREGISTRO"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\DFM Fato\Derived Column.Outputs[Derived Column Output].Columns[STATUSREGISTRO]"
+                      name="STATUSREGISTRO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,15)("Expired")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,15)("Expired")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFM Fato\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFM Fato\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\Derived Column 1.Outputs[Derived Column Output].Columns[STATUSREGISTRO]"
+                      dataType="wstr"
+                      description="STATUSREGISTRO"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\DFM Fato\Derived Column 1.Outputs[Derived Column Output].Columns[STATUSREGISTRO]"
+                      name="STATUSREGISTRO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,15)("Current")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,15)("Current")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFM Fato\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -693,11 +861,11 @@
               </inputs>
             </component>
             <component
-              refId="Package\DFM Fato\GRAVAR FATO DA VENDA"
+              refId="Package\DFM Fato\Insert Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="GRAVAR FATO DA VENDA"
+              name="Insert Destination"
               usesDispositions="true"
               version="4">
               <properties>
@@ -730,7 +898,7 @@
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">3</property>
+                  typeConverter="AccessMode">0</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -742,7 +910,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                  name="FastLoadOptions"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -750,7 +918,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Connections[OleDbConnection]"
+                  refId="Package\DFM Fato\Insert Destination.Connections[OleDbConnection]"
                   connectionManagerID="{C29C30FD-556A-4694-8356-5293AB6719B6}:external"
                   connectionManagerRefId="Project.ConnectionManagers[Destino.APPSOP_BI]"
                   description="The OLE DB runtime connection used to access the database."
@@ -758,120 +926,144 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input]"
+                  refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILNRODOC]"
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILNRODOC]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="TSOP_ORDBILNRODOC"
-                      externalMetadataColumnId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
-                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]" />
+                      externalMetadataColumnId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILNRODOC]" />
                     <inputColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILQTD]"
-                      cachedDataType="numeric"
-                      cachedName="TSOP_ORDBILQTD"
-                      cachedPrecision="15"
-                      cachedScale="2"
-                      externalMetadataColumnId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
-                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILQTD]" />
-                    <inputColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].Columns[SKCLIENTE]"
-                      cachedDataType="i4"
-                      cachedName="SKCLIENTE"
-                      externalMetadataColumnId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[SKCLIENTE]"
-                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output].Columns[SKCLIENTE]" />
-                    <inputColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].Columns[SKPRODUTO]"
-                      cachedDataType="i4"
-                      cachedName="SKPRODUTO"
-                      externalMetadataColumnId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[SKPRODUTO]"
-                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Match Output].Columns[SKPRODUTO]" />
-                    <inputColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].Columns[SKVENDEDOR]"
-                      cachedDataType="i4"
-                      cachedName="SKVENDEDOR"
-                      externalMetadataColumnId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[SKVENDEDOR]"
-                      lineageId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Match Output].Columns[SKVENDEDOR]" />
-                    <inputColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].Columns[SKTempo]"
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].Columns[SKTempo]"
                       cachedDataType="i4"
                       cachedName="SKTempo"
-                      externalMetadataColumnId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[SKTEMPO]"
-                      lineageId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Match Output].Columns[SKTempo]" />
+                      externalMetadataColumnId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKTEMPO]"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKTempo]" />
                     <inputColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILVALLIQ]"
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].Columns[SKVENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="SKVENDEDOR"
+                      externalMetadataColumnId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKVENDEDOR]"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKVENDEDOR]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].Columns[SKPRODUTO]"
+                      cachedDataType="i4"
+                      cachedName="SKPRODUTO"
+                      externalMetadataColumnId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKPRODUTO]"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKPRODUTO]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].Columns[SKCLIENTE]"
+                      cachedDataType="i4"
+                      cachedName="SKCLIENTE"
+                      externalMetadataColumnId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKCLIENTE]"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKCLIENTE]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILVALLIQ]"
                       cachedDataType="numeric"
                       cachedName="TSOP_ORDBILVALLIQ"
                       cachedPrecision="15"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[VALORVENDA]"
-                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILVALLIQ]" />
+                      externalMetadataColumnId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[VALORVENDA]"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILVALLIQ]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILQTD]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILQTD"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILQTD]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].Columns[TSOP_ORDBILTIPDOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILTIPDOC"
+                      externalMetadataColumnId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILTIPDOC]"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILTIPDOC]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].Columns[STATUSREGISTRO]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="STATUSREGISTRO"
+                      externalMetadataColumnId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATUSREGISTRO]"
+                      lineageId="Package\DFM Fato\Derived Column 1.Outputs[Derived Column Output].Columns[STATUSREGISTRO]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[FATOVENDA_ID]"
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FATOVENDA_ID]"
                       dataType="i4"
                       name="FATOVENDA_ID" />
                     <externalMetadataColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILNRODOC]"
                       dataType="wstr"
                       length="255"
                       name="TSOP_ORDBILNRODOC" />
                     <externalMetadataColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[SKTEMPO]"
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKTEMPO]"
                       dataType="i4"
                       name="SKTEMPO" />
                     <externalMetadataColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[SKVENDEDOR]"
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKVENDEDOR]"
                       dataType="i4"
                       name="SKVENDEDOR" />
                     <externalMetadataColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[SKPRODUTO]"
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKPRODUTO]"
                       dataType="i4"
                       name="SKPRODUTO" />
                     <externalMetadataColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[SKCLIENTE]"
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SKCLIENTE]"
                       dataType="i4"
                       name="SKCLIENTE" />
                     <externalMetadataColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[VALORVENDA]"
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[VALORVENDA]"
                       dataType="numeric"
                       name="VALORVENDA"
                       precision="18"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILQTD]"
                       dataType="numeric"
                       name="TSOP_ORDBILQTD"
                       precision="15"
                       scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TSOP_ORDBILTIPDOC]"
+                      dataType="wstr"
+                      length="255"
+                      name="TSOP_ORDBILTIPDOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATUSREGISTRO]"
+                      dataType="wstr"
+                      length="15"
+                      name="STATUSREGISTRO" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DFM Fato\Insert Destination.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DFM Fato\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFM Fato\GRAVAR FATO DA VENDA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFM Fato\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFM Fato\GRAVAR FATO DA VENDA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFM Fato\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFM Fato\GRAVAR FATO DA VENDA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFM Fato\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1553,6 +1745,190 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
               </outputs>
             </component>
             <component
+              refId="Package\DFM Fato\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[FATOVENDA] SET [STATUSREGISTRO] = ? WHERE [SKCLIENTE] = ? AND [SKPRODUTO] = ? AND [SKTEMPO] = ? AND [SKVENDEDOR] = ? AND [TSOP_ORDBILNRODOC] = ? AND [STATUSREGISTRO] = 'Current'</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFM Fato\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{C29C30FD-556A-4694-8356-5293AB6719B6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destino.APPSOP_BI]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].Columns[SKCLIENTE]"
+                      cachedDataType="i4"
+                      cachedName="SKCLIENTE"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output].Columns[SKCLIENTE]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].Columns[SKPRODUTO]"
+                      cachedDataType="i4"
+                      cachedName="SKPRODUTO"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Match Output].Columns[SKPRODUTO]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].Columns[SKTempo]"
+                      cachedDataType="i4"
+                      cachedName="SKTempo"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Match Output].Columns[SKTempo]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].Columns[SKVENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="SKVENDEDOR"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Match Output].Columns[SKVENDEDOR]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].Columns[TSOP_ORDBILNRODOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILNRODOC"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]" />
+                    <inputColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].Columns[STATUSREGISTRO]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="STATUSREGISTRO"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DFM Fato\Derived Column.Outputs[Derived Column Output].Columns[STATUSREGISTRO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="15"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="i4"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\DFM Fato\OLE DB Source"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
@@ -1585,11 +1961,11 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
 	   TSOP_ORDBILSITNOM = convert(nvarchar(100),V.TSOP_ORDBILSITNOM), 
 	   TSOP_ORDBILCANNOM = convert(nvarchar(100),V.TSOP_ORDBILCANNOM),
 	   TSOP_ORDBILCLICOD = convert(nvarchar(255), V.TSOP_ORDBILCLICOD),
-	    TSOP_ORDBILITECOD = convert(nvarchar(255), V.TSOP_ORDBILITECOD)
+	    TSOP_ORDBILITECOD = convert(nvarchar(255), V.TSOP_ORDBILITECOD),
+TSOP_ORDBILTIPDOC = convert(nvarchar(255), V.TSOP_ORDBILTIPDOC)
 
  FROM VSOP_ORDERBILLINGFULL V
- WHERE V.TSOP_ORDBILTIPDOC = 'BILLING' 
- AND (V.TSOP_ORDBILDATDOC &gt; ?) AND (V.TSOP_ORDBILDATDOC &lt;= ?)</property>
+ WHERE (V.TSOP_ORDBILDATDOC &gt; ?) AND (V.TSOP_ORDBILDATDOC &lt;= ?)</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -1716,6 +2092,16 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
                       lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILITECOD]"
                       name="TSOP_ORDBILITECOD"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILTIPDOC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILTIPDOC]"
+                      length="255"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILTIPDOC]"
+                      name="TSOP_ORDBILTIPDOC"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1765,6 +2151,11 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
                       dataType="wstr"
                       length="255"
                       name="TSOP_ORDBILITECOD" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSOP_ORDBILTIPDOC]"
+                      dataType="wstr"
+                      length="255"
+                      name="TSOP_ORDBILTIPDOC" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -1827,6 +2218,12 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
                       length="255"
                       lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILITECOD]"
                       name="TSOP_ORDBILITECOD" />
+                    <outputColumn
+                      refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILTIPDOC]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSOP_ORDBILTIPDOC]"
+                      name="TSOP_ORDBILTIPDOC" />
                     <outputColumn
                       refId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -2032,6 +2429,815 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
                   </externalMetadataColumns>
                 </input>
               </inputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\Slowly Changing Dimension"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="Slowly Changing Dimension"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [SKCLIENTE], [SKPRODUTO], [SKTEMPO], [SKVENDEDOR], [TSOP_ORDBILNRODOC], [TSOP_ORDBILQTD], [TSOP_ORDBILTIPDOC], [VALORVENDA],[STATUSREGISTRO] FROM [dbo].[FATOVENDA]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere">[STATUSREGISTRO] = 'Current'</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFM Fato\Slowly Changing Dimension.Connections[LookupConnection]"
+                  connectionManagerID="{C29C30FD-556A-4694-8356-5293AB6719B6}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destino.APPSOP_BI]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[SKCLIENTE]"
+                      cachedDataType="i4"
+                      cachedName="SKCLIENTE"
+                      externalMetadataColumnId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SKCLIENTE]"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output].Columns[SKCLIENTE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[SKPRODUTO]"
+                      cachedDataType="i4"
+                      cachedName="SKPRODUTO"
+                      externalMetadataColumnId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SKPRODUTO]"
+                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Match Output].Columns[SKPRODUTO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[SKTempo]"
+                      cachedDataType="i4"
+                      cachedName="SKTempo"
+                      externalMetadataColumnId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SKTEMPO]"
+                      lineageId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Match Output].Columns[SKTempo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[SKVENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="SKVENDEDOR"
+                      externalMetadataColumnId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SKVENDEDOR]"
+                      lineageId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Match Output].Columns[SKVENDEDOR]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TSOP_ORDBILNRODOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILNRODOC"
+                      externalMetadataColumnId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TSOP_ORDBILQTD]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILQTD"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILQTD]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TSOP_ORDBILTIPDOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILTIPDOC"
+                      externalMetadataColumnId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_ORDBILTIPDOC]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILTIPDOC]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TSOP_ORDBILVALLIQ]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILVALLIQ"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[VALORVENDA]"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILVALLIQ]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SKCLIENTE]"
+                      dataType="i4"
+                      name="SKCLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SKPRODUTO]"
+                      dataType="i4"
+                      name="SKPRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SKTEMPO]"
+                      dataType="i4"
+                      name="SKTEMPO" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SKVENDEDOR]"
+                      dataType="i4"
+                      name="SKVENDEDOR" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_ORDBILNRODOC]"
+                      dataType="wstr"
+                      length="255"
+                      name="TSOP_ORDBILNRODOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_ORDBILQTD]"
+                      dataType="numeric"
+                      name="TSOP_ORDBILQTD"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TSOP_ORDBILTIPDOC]"
+                      dataType="wstr"
+                      length="255"
+                      name="TSOP_ORDBILTIPDOC" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[VALORVENDA]"
+                      dataType="numeric"
+                      name="VALORVENDA"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[STATUSREGISTRO]"
+                      dataType="wstr"
+                      length="15"
+                      name="STATUSREGISTRO" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\Slowly Changing Dimension.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFM Fato\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFM Fato\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DFM Fato\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[TSOP_ORDBILNRODOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILNRODOC"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILNRODOC]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[TSOP_ORDBILVALLIQ]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILVALLIQ"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILVALLIQ]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILVALLIQ]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[TSOP_ORDBILQTD]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILQTD"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILQTD]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILQTD]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[TSOP_ORDBILDATDOC]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TSOP_ORDBILDATDOC"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILDATDOC]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILDATDOC]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[TSOP_ORDBILREPNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TSOP_ORDBILREPNOM"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILREPNOM]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[TSOP_ORDBILSITNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILSITNOM"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILSITNOM]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILSITNOM]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[TSOP_ORDBILCANNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILCANNOM"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCANNOM]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILCANNOM]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[TSOP_ORDBILCLICOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILCLICOD"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCLICOD]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILCLICOD]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[TSOP_ORDBILITECOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILITECOD"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILITECOD]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILITECOD]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[TSOP_ORDBILTIPDOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILTIPDOC"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILTIPDOC]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILTIPDOC]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[SKCLIENTE]"
+                      cachedDataType="i4"
+                      cachedName="SKCLIENTE"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output].Columns[SKCLIENTE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKCLIENTE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[SKPRODUTO]"
+                      cachedDataType="i4"
+                      cachedName="SKPRODUTO"
+                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Match Output].Columns[SKPRODUTO]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKPRODUTO]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[SKVENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="SKVENDEDOR"
+                      lineageId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Match Output].Columns[SKVENDEDOR]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKVENDEDOR]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[DC_TSOP_ORDBILDATDOC]"
+                      cachedDataType="dbDate"
+                      cachedName="DC_TSOP_ORDBILDATDOC"
+                      lineageId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Output].Columns[DC_TSOP_ORDBILDATDOC]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[DC_TSOP_ORDBILDATDOC]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 1].Columns[SKTempo]"
+                      cachedDataType="i4"
+                      cachedName="SKTempo"
+                      lineageId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Match Output].Columns[SKTempo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKTempo]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFM Fato\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[TSOP_ORDBILNRODOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILNRODOC"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILNRODOC]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[TSOP_ORDBILVALLIQ]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILVALLIQ"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILVALLIQ]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILVALLIQ]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[TSOP_ORDBILQTD]"
+                      cachedDataType="numeric"
+                      cachedName="TSOP_ORDBILQTD"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILQTD]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILQTD]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[TSOP_ORDBILDATDOC]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TSOP_ORDBILDATDOC"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILDATDOC]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILDATDOC]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[TSOP_ORDBILREPNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TSOP_ORDBILREPNOM"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILREPNOM]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILREPNOM]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[TSOP_ORDBILSITNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILSITNOM"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILSITNOM]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILSITNOM]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[TSOP_ORDBILCANNOM]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="TSOP_ORDBILCANNOM"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCANNOM]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILCANNOM]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[TSOP_ORDBILCLICOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILCLICOD"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILCLICOD]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILCLICOD]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[TSOP_ORDBILITECOD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILITECOD"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILITECOD]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILITECOD]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[TSOP_ORDBILTIPDOC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TSOP_ORDBILTIPDOC"
+                      lineageId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILTIPDOC]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILTIPDOC]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[SKCLIENTE]"
+                      cachedDataType="i4"
+                      cachedName="SKCLIENTE"
+                      lineageId="Package\DFM Fato\LKP CLIENTE.Outputs[Lookup Match Output].Columns[SKCLIENTE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKCLIENTE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[SKPRODUTO]"
+                      cachedDataType="i4"
+                      cachedName="SKPRODUTO"
+                      lineageId="Package\DFM Fato\LKP PRODUTO.Outputs[Lookup Match Output].Columns[SKPRODUTO]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKPRODUTO]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[SKVENDEDOR]"
+                      cachedDataType="i4"
+                      cachedName="SKVENDEDOR"
+                      lineageId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Match Output].Columns[SKVENDEDOR]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKVENDEDOR]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[DC_TSOP_ORDBILDATDOC]"
+                      cachedDataType="dbDate"
+                      cachedName="DC_TSOP_ORDBILDATDOC"
+                      lineageId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Output].Columns[DC_TSOP_ORDBILDATDOC]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[DC_TSOP_ORDBILDATDOC]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFM Fato\Union All.Inputs[Union All Input 2].Columns[SKTempo]"
+                      cachedDataType="i4"
+                      cachedName="SKTempo"
+                      lineageId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Match Output].Columns[SKTempo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKTempo]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFM Fato\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFM Fato\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILNRODOC]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILNRODOC]"
+                      name="TSOP_ORDBILNRODOC" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILVALLIQ]"
+                      dataType="numeric"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILVALLIQ]"
+                      name="TSOP_ORDBILVALLIQ"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILQTD]"
+                      dataType="numeric"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILQTD]"
+                      name="TSOP_ORDBILQTD"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILDATDOC]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILDATDOC]"
+                      name="TSOP_ORDBILDATDOC" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILREPNOM]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILREPNOM]"
+                      name="TSOP_ORDBILREPNOM" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILSITNOM]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILSITNOM]"
+                      name="TSOP_ORDBILSITNOM" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILCANNOM]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILCANNOM]"
+                      name="TSOP_ORDBILCANNOM" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILCLICOD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILCLICOD]"
+                      name="TSOP_ORDBILCLICOD" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILITECOD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILITECOD]"
+                      name="TSOP_ORDBILITECOD" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILTIPDOC]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[TSOP_ORDBILTIPDOC]"
+                      name="TSOP_ORDBILTIPDOC" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKCLIENTE]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKCLIENTE]"
+                      name="SKCLIENTE" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKPRODUTO]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKPRODUTO]"
+                      name="SKPRODUTO" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKVENDEDOR]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKVENDEDOR]"
+                      name="SKVENDEDOR" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[DC_TSOP_ORDBILDATDOC]"
+                      dataType="dbDate"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[DC_TSOP_ORDBILDATDOC]"
+                      name="DC_TSOP_ORDBILDATDOC" />
+                    <outputColumn
+                      refId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKTempo]"
+                      dataType="i4"
+                      lineageId="Package\DFM Fato\Union All.Outputs[Union All Output 1].Columns[SKTempo]"
+                      name="SKTempo" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
             </component>
             <component
               refId="Package\DFM Fato\VendedorNEncontrado"
@@ -2240,6 +3446,21 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
               name="Data Conversion Output"
               startId="Package\DFM Fato\Data Conversion.Outputs[Data Conversion Output]" />
             <path
+              refId="Package\DFM Fato.Paths[Derived Column Output]"
+              endId="Package\DFM Fato\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\DFM Fato\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[Derived Column Output1]"
+              endId="Package\DFM Fato\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DFM Fato\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[Historical Attribute Inserts Output]"
+              endId="Package\DFM Fato\Derived Column.Inputs[Derived Column Input]"
+              name="Historical Attribute Inserts Output"
+              startId="Package\DFM Fato\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]" />
+            <path
               refId="Package\DFM Fato.Paths[Lookup Error Output]"
               endId="Package\DFM Fato\ProdutoNEncontrado.Inputs[Flat File Destination Input]"
               name="Lookup Error Output"
@@ -2271,14 +3492,29 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
               startId="Package\DFM Fato\LKP VENDEDOR.Outputs[Lookup Match Output]" />
             <path
               refId="Package\DFM Fato.Paths[Lookup Match Output3]"
-              endId="Package\DFM Fato\GRAVAR FATO DA VENDA.Inputs[OLE DB Destination Input]"
+              endId="Package\DFM Fato\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
               name="Lookup Match Output"
               startId="Package\DFM Fato\LKP TEMPO.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[New Output]"
+              endId="Package\DFM Fato\Union All.Inputs[Union All Input 1]"
+              name="New Output"
+              startId="Package\DFM Fato\Slowly Changing Dimension.Outputs[New Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[OLE DB Command Output]"
+              endId="Package\DFM Fato\Union All.Inputs[Union All Input 2]"
+              name="OLE DB Command Output"
+              startId="Package\DFM Fato\OLE DB Command.Outputs[OLE DB Command Output]" />
             <path
               refId="Package\DFM Fato.Paths[OLE DB Source Output]"
               endId="Package\DFM Fato\LKP CLIENTE.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\DFM Fato\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFM Fato.Paths[Union All Output 1]"
+              endId="Package\DFM Fato\Derived Column 1.Inputs[Derived Column Input]"
+              name="Union All Output 1"
+              startId="Package\DFM Fato\Union All.Outputs[Union All Output 1]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -2320,24 +3556,6 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
             SQLTask:ResultName="LoadTime"
             SQLTask:DtsVariableName="User::LastLoadTime" />
         </SQLTask:SqlTaskData>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Execute SQL Task"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{2A6A78F8-57A6-4C71-AC26-71034295E64D}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Execute SQL Task"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{C29C30FD-556A-4694-8356-5293AB6719B6}"
-          SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="UPDATE CARGA_TABELA&#xA;SET DT_ULTIMA_CARGA = GETDATE()&#xA;WHERE  TABELA = 'DIM_FATOVENDA'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -2383,7 +3601,7 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
       DTS:From="Package\DFM Fato"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Execute SQL Task" />
+      DTS:To="Package\Atualiza Data de Ultima Carga" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
@@ -2418,9 +3636,13 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
           Id="Package\DT_UltmaCarga_FatoVenda"
           TopLeft="161,163" />
         <NodeLayout
-          Size="163,42"
-          Id="Package\Execute SQL Task"
+          Size="220,42"
+          Id="Package\Atualiza Data de Ultima Carga"
           TopLeft="209,365" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\TRUNCATE TABLE FATO_VENDA"
+          TopLeft="249,2" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="262.5,121">
@@ -2483,9 +3705,9 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="13,64.5"
+              EndConnector="41.5,64.5"
               Start="0,0"
-              End="13,57">
+              End="41.5,57">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2496,13 +3718,13 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
                     Point2="0,32.25"
                     Point3="4,32.25" />
                   <mssgle:LineSegment
-                    End="9,32.25" />
+                    End="37.5,32.25" />
                   <mssgle:CubicBezierSegment
-                    Point1="9,32.25"
-                    Point2="13,32.25"
-                    Point3="13,36.25" />
+                    Point1="37.5,32.25"
+                    Point2="41.5,32.25"
+                    Point3="41.5,36.25" />
                   <mssgle:LineSegment
-                    End="13,57" />
+                    End="41.5,57" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2511,10 +3733,6 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="233,42"
-          Id="Package\TRUNCATE TABLE FATO_VENDA"
-          TopLeft="249,2" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="365.5,44">
@@ -2560,255 +3778,265 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
         <NodeLayout
           Size="176,42"
           Id="Package\DFM Fato\ProdutoNEncontrado"
-          TopLeft="373,218" />
+          TopLeft="370.5,311.5" />
         <NodeLayout
           Size="184,42"
           Id="Package\DFM Fato\VendedorNEncontrado"
-          TopLeft="274,374" />
-        <NodeLayout
-          Size="148,42"
-          Id="Package\DFM Fato\LKP PRODUTO"
-          TopLeft="67.5,220" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\DFM Fato\LKP VENDEDOR"
-          TopLeft="68.25,312" />
+          TopLeft="371.5,413.5" />
         <NodeLayout
           Size="172,42"
           Id="Package\DFM Fato\Flat File Destination"
-          TopLeft="369,106" />
+          TopLeft="367.5,209.5" />
         <NodeLayout
-          Size="150,42"
-          Id="Package\DFM Fato\OLE DB Source"
-          TopLeft="75,7" />
+          Size="154,42"
+          Id="Package\DFM Fato\LKP VENDEDOR"
+          TopLeft="155.5,311.5" />
         <NodeLayout
           Size="141,42"
           Id="Package\DFM Fato\LKP CLIENTE"
-          TopLeft="66.75,107" />
+          TopLeft="383,107.5" />
         <NodeLayout
           Size="134,42"
           Id="Package\DFM Fato\LKP TEMPO"
-          TopLeft="488.285714285714,440.428571428571" />
+          TopLeft="165.5,515.5" />
         <NodeLayout
           Size="156,42"
           Id="Package\DFM Fato\Data Conversion"
-          TopLeft="416.25,312.5" />
+          TopLeft="154.5,413.5" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\DFM Fato\LKP PRODUTO"
+          TopLeft="158.5,209.5" />
         <EdgeLayout
           Id="Package\DFM Fato.Paths[Lookup Match Output2]"
-          TopLeft="222.25,333.25">
+          TopLeft="208.166666666667,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="194,0"
+              EndConnector="24.3333333333334,60"
               Start="0,0"
-              End="186.5,0">
+              End="24.3333333333334,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="186.5,0" />
+                    End="0,20.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3701799485861"
+                    Point2="0,24.3701799485861"
+                    Point3="4,24.3701799485861" />
+                  <mssgle:LineSegment
+                    End="20.3333333333334,24.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.3333333333334,24.3701799485861"
+                    Point2="24.3333333333334,24.3701799485861"
+                    Point3="24.3333333333334,28.3701799485861" />
+                  <mssgle:LineSegment
+                    End="24.3333333333334,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="45.05861328125,5,96.3827734375,11.609375"
+              BoundingBox="-36.0247200520833,29.3701799485861,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFM Fato.Paths[Lookup Match Output1]"
-          TopLeft="143.375,262">
+          TopLeft="209.166666666667,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,50"
+              EndConnector="23.3333333333333,60"
               Start="0,0"
-              End="0,42.5">
+              End="23.3333333333333,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,42.5" />
+                    End="0,20.3850267379679" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3850267379679"
+                    Point2="0,24.3850267379679"
+                    Point3="4,24.3850267379679" />
+                  <mssgle:LineSegment
+                    End="19.3333333333333,24.3850267379679" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.3333333333333,24.3850267379679"
+                    Point2="23.3333333333333,24.3850267379679"
+                    Point3="23.3333333333333,28.3850267379679" />
+                  <mssgle:LineSegment
+                    End="23.3333333333333,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,15.4453125,96.3827734375,11.609375"
+              BoundingBox="-36.5247200520833,29.3850267379679,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFM Fato.Paths[Lookup Match Output]"
-          TopLeft="139.375,149">
+          TopLeft="431.333333333333,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,71"
+              EndConnector="-198.833333333333,60"
               Start="0,0"
-              End="0,63.5">
+              End="-198.833333333333,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,63.5" />
+                    End="0,20.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4039270687237"
+                    Point2="0,24.4039270687237"
+                    Point3="-4,24.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-194.833333333333,24.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-194.833333333333,24.4039270687237"
+                    Point2="-198.833333333333,24.4039270687237"
+                    Point3="-198.833333333333,28.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-198.833333333333,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,25.9453125,96.3827734375,11.609375"
+              BoundingBox="-147.608053385417,29.4039270687237,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFM Fato.Paths[Lookup Error Output2]"
-          TopLeft="207.75,127.5">
+          TopLeft="475.666666666667,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="161.25,0"
+              EndConnector="-22.1666666666667,60"
               Start="0,0"
-              End="153.75,0">
+              End="-22.1666666666667,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="153.75,0" />
+                    End="0,20.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4039270687237"
+                    Point2="0,24.4039270687237"
+                    Point3="-4,24.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-18.1666666666667,24.4039270687237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.1666666666667,24.4039270687237"
+                    Point2="-22.1666666666667,24.4039270687237"
+                    Point3="-22.1666666666667,28.4039270687237" />
+                  <mssgle:LineSegment
+                    End="-22.1666666666667,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="31.00861328125,5,91.7327734375,11.609375"
+              BoundingBox="-56.9497200520834,29.4039270687237,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFM Fato.Paths[Lookup Error Output1]"
-          TopLeft="222.25,338.666666666667">
+          TopLeft="256.833333333333,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="51.75,56.3333333333333"
+              EndConnector="206.666666666667,60"
               Start="0,0"
-              End="44.25,56.3333333333333">
+              End="206.666666666667,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="17.8394495412844,0" />
+                    End="0,20.3701799485861" />
                   <mssgle:CubicBezierSegment
-                    Point1="17.8394495412844,0"
-                    Point2="21.8394495412844,0"
-                    Point3="21.8394495412844,4" />
+                    Point1="0,20.3701799485861"
+                    Point2="0,24.3701799485861"
+                    Point3="4,24.3701799485861" />
                   <mssgle:LineSegment
-                    End="21.8394495412844,52.3333333333333" />
+                    End="202.666666666667,24.3701799485861" />
                   <mssgle:CubicBezierSegment
-                    Point1="21.8394495412844,52.3333333333333"
-                    Point2="21.8394495412844,56.3333333333333"
-                    Point3="25.8394495412844,56.3333333333333" />
+                    Point1="202.666666666667,24.3701799485861"
+                    Point2="206.666666666667,24.3701799485861"
+                    Point3="206.666666666667,28.3701799485861" />
                   <mssgle:LineSegment
-                    End="44.25,56.3333333333333" />
+                    End="206.666666666667,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-24.0269371774656,-17.609375,91.7327734375,11.609375"
+              BoundingBox="57.4669466145833,29.3701799485861,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFM Fato.Paths[Lookup Error Output]"
-          TopLeft="215.5,240">
+          TopLeft="255.833333333333,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="157.5,0"
+              EndConnector="202.666666666667,60"
               Start="0,0"
-              End="150,0">
+              End="202.666666666667,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="150,0" />
+                    End="0,20.3850267379679" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3850267379679"
+                    Point2="0,24.3850267379679"
+                    Point3="4,24.3850267379679" />
+                  <mssgle:LineSegment
+                    End="198.666666666667,24.3850267379679" />
+                  <mssgle:CubicBezierSegment
+                    Point1="198.666666666667,24.3850267379679"
+                    Point2="202.666666666667,24.3850267379679"
+                    Point3="202.666666666667,28.3850267379679" />
+                  <mssgle:LineSegment
+                    End="202.666666666667,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="29.13361328125,5,91.7327734375,11.609375"
+              BoundingBox="55.4669466145833,29.3850267379679,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFM Fato.Paths[Data Conversion Output]"
-          TopLeft="494.25,354.5">
+          TopLeft="232.5,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="61.0357142857143,85.9285714285714"
+              EndConnector="0,60"
               Start="0,0"
-              End="61.0357142857143,78.4285714285714">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.9642857142857" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,38.9642857142857"
-                    Point2="0,42.9642857142857"
-                    Point3="4,42.9642857142857" />
-                  <mssgle:LineSegment
-                    End="57.0357142857143,42.9642857142857" />
-                  <mssgle:CubicBezierSegment
-                    Point1="57.0357142857143,42.9642857142857"
-                    Point2="61.0357142857143,42.9642857142857"
-                    Point3="61.0357142857143,46.9642857142857" />
-                  <mssgle:LineSegment
-                    End="61.0357142857143,78.4285714285714" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFM Fato.Paths[OLE DB Source Output]"
-          TopLeft="150,49">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-12.75,58"
-              Start="0,0"
-              End="-12.75,50.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,25"
-                    Point2="0,29"
-                    Point3="-4,29" />
-                  <mssgle:LineSegment
-                    End="-8.75,29" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-8.75,29"
-                    Point2="-12.75,29"
-                    Point3="-12.75,33" />
-                  <mssgle:LineSegment
-                    End="-12.75,50.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2818,59 +4046,256 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="201,42"
-          Id="Package\DFM Fato\GRAVAR FATO DA VENDA"
-          TopLeft="98,446" />
+          Size="150,42"
+          Id="Package\DFM Fato\OLE DB Source"
+          TopLeft="378.5,5.5" />
         <EdgeLayout
-          Id="Package\DFM Fato.Paths[Lookup Match Output3]"
-          TopLeft="488.285714285714,464.214285714286">
+          Id="Package\DFM Fato.Paths[OLE DB Source Output]"
+          TopLeft="453.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-189.285714285714,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="-181.785714285714,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-181.785714285714,0" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-139.084243861607,5,96.3827734375,11.609375"
+              BoundingBox="-8,18.25,16,16"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="209,42"
+          Id="Package\DFM Fato\Slowly Changing Dimension"
+          TopLeft="128,617.5" />
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Lookup Match Output3]"
+          TopLeft="232.5,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154,42"
+          Id="Package\DFM Fato\Derived Column"
+          TopLeft="17.5000000000001,719.5" />
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Historical Attribute Inserts Output]"
+          TopLeft="199,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-104.5,60"
+              Start="0,0"
+              End="-104.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2735042735043" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2735042735043"
+                    Point2="0,24.2735042735043"
+                    Point3="-4,24.2735042735043" />
+                  <mssgle:LineSegment
+                    End="-100.5,24.2735042735043" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-100.5,24.2735042735043"
+                    Point2="-104.5,24.2735042735043"
+                    Point3="-104.5,28.2735042735043" />
+                  <mssgle:LineSegment
+                    End="-104.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-127.30638671875,29.2735042735043,150.1127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="166,42"
+          Id="Package\DFM Fato\OLE DB Command"
+          TopLeft="5.50000000000011,821.5" />
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Derived Column Output]"
+          TopLeft="91.5000000000001,761.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\DFM Fato\Union All"
+          TopLeft="172,923.5" />
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[New Output]"
+          TopLeft="266,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.6666666666666,264"
+              Start="0,0"
+              End="-14.6666666666666,256.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,127.104705383637" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,127.104705383637"
+                    Point2="0,131.104705383637"
+                    Point3="-4,131.104705383637" />
+                  <mssgle:LineSegment
+                    End="-10.6666666666666,131.104705383637" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.6666666666666,131.104705383637"
+                    Point2="-14.6666666666666,131.104705383637"
+                    Point3="-14.6666666666666,135.104705383637" />
+                  <mssgle:LineSegment
+                    End="-14.6666666666666,256.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-34.4247200520833,136.104705383637,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[OLE DB Command Output]"
+          TopLeft="88.5000000000001,863.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="125.166666666667,60"
+              Start="0,0"
+              End="125.166666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5301794453507" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5301794453507"
+                    Point2="0,35.5301794453507"
+                    Point3="4,35.5301794453507" />
+                  <mssgle:LineSegment
+                    End="121.166666666667,35.5301794453507" />
+                  <mssgle:CubicBezierSegment
+                    Point1="121.166666666667,35.5301794453507"
+                    Point2="125.166666666667,35.5301794453507"
+                    Point3="125.166666666667,39.5301794453507" />
+                  <mssgle:LineSegment
+                    End="125.166666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="163,42"
+          Id="Package\DFM Fato\Derived Column 1"
+          TopLeft="151,1025.5" />
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Union All Output 1]"
+          TopLeft="232.5,965.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="163,42"
+          Id="Package\DFM Fato\Insert Destination"
+          TopLeft="151,1127.5" />
+        <EdgeLayout
+          Id="Package\DFM Fato.Paths[Derived Column Output1]"
+          TopLeft="232.5,1067.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFM Fato\LKP PRODUTO">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\DFM Fato\LKP VENDEDOR">
     <Properties>
@@ -2889,14 +4314,6 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
         <Value
           type="q4:int">0</Value>
       </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFM Fato\OLE DB Source">
-    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
@@ -2949,15 +4366,115 @@ where [refTable].[NOME] = ? and [refTable].[TSOP_PLANTA] = ? and [refTable].[TSO
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DFM Fato\GRAVAR FATO DA VENDA">
+    design-time-name="Package\DFM Fato\LKP PRODUTO">
     <Properties>
       <Property>
-        <Name>DataSourceViewID</Name>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q2:string">Table</Value>
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFM Fato\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFM Fato\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{C29C30FD-556A-4694-8356-5293AB6719B6}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[FATOVENDA]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;LKP CLIENTE.Outputs[Lookup Match Output].Columns[SKCLIENTE]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;SKCLIENTE&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;LKP PRODUTO.Outputs[Lookup Match Output].Columns[SKPRODUTO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;SKPRODUTO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;LKP TEMPO.Outputs[Lookup Match Output].Columns[SKTempo]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;SKTEMPO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;LKP VENDEDOR.Outputs[Lookup Match Output].Columns[SKVENDEDOR]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;SKVENDEDOR&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILNRODOC]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;TSOP_ORDBILNRODOC&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILQTD]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;TSOP_ORDBILQTD&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILTIPDOC]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;TSOP_ORDBILTIPDOC&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[TSOP_ORDBILVALLIQ]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;VALORVENDA&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;true&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn&gt;STATUSREGISTRO&lt;/CurrentIndicatorColumn&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent&gt;Current&lt;/ValueCurrent&gt;
+  &lt;ValueExpired&gt;Expired&lt;/ValueExpired&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
